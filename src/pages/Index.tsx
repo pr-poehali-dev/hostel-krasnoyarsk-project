@@ -167,10 +167,10 @@ const Index = () => {
               <Card className="border-2 hover:border-primary transition-colors">
                 <CardHeader>
                   <Icon name="MapPinned" className="text-primary mx-auto mb-4" size={48} />
-                  <CardTitle>Удобное расположение</CardTitle>
+                  <CardTitle className="text-center">Удобное расположение</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
+                  <p className="text-muted-foreground text-sm">
                     В шаговой доступности от Миграционного центра
                   </p>
                 </CardContent>
@@ -196,7 +196,7 @@ const Index = () => {
           <h2 className="text-4xl font-bold text-center text-foreground mb-12">Наши номера</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {rooms.map((room, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow">
+              <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow flex flex-col">
                 <img
                   src={room.image}
                   alt={room.title}
@@ -209,13 +209,13 @@ const Index = () => {
                     {room.capacity}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4 flex flex-col h-full">
-                  <p className="text-muted-foreground">{room.description}</p>
+                <CardContent className="space-y-4 flex flex-col flex-1">
+                  <p className="text-muted-foreground flex-1">{room.description}</p>
                   <div className="flex items-center justify-between pt-4">
                     <span className="text-3xl font-bold text-primary">{room.price}</span>
                     <span className="text-sm text-muted-foreground">за койко-место</span>
                   </div>
-                  <Button className="w-full mt-auto" onClick={() => scrollToSection('booking')}>
+                  <Button className="w-full" onClick={() => scrollToSection('booking')}>
                     Забронировать
                   </Button>
                 </CardContent>
@@ -436,7 +436,7 @@ const Index = () => {
             </Card>
             <div className="rounded-xl overflow-hidden shadow-lg">
               <iframe 
-                src="https://yandex.ru/map-widget/v1/?ll=92.869235%2C56.017991&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1Njg3MzQ3MhJJ0KDQvtGB0YHQuNGPLCDQmtGA0LDRgdC90L7Rj9GA0YHQuiwg0YPQu9C40YbQsCAy0Y8g0JrRgNCw0YHQvdC-0LPQvtGA0YHQutCw0Y8sIDMiCg1qMXxCFUzQV0I%2C&z=16.84"
+                src="https://yandex.ru/map-widget/v1/?ll=92.869235%2C56.017991&z=17&l=map&pt=92.869235,56.017991,pm2rdm"
                 width="100%"
                 height="400"
                 frameBorder="0"
