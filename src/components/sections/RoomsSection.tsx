@@ -1,0 +1,132 @@
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import Icon from '@/components/ui/icon';
+
+interface RoomsSectionProps {
+  scrollToSection: (id: string) => void;
+}
+
+const RoomsSection = ({ scrollToSection }: RoomsSectionProps) => {
+  const rooms = [
+    {
+      title: '4-местный номер',
+      capacity: '4 человека',
+      description: 'Уютный номер с четырьмя спальными местами, собственным санузлом и душем',
+      price: '900 ₽',
+      image: 'https://cdn.poehali.dev/projects/b9b6d5e9-7202-4033-b63f-07de5b1cf926/files/1e57c102-155b-4e6a-8ff6-2b0824e1320c.jpg'
+    },
+    {
+      title: '8-местный номер',
+      capacity: '8 человек',
+      description: 'Просторный номер с восемью спальными местами, собственным санузлом и душем',
+      price: '900 ₽',
+      image: 'https://cdn.poehali.dev/projects/b9b6d5e9-7202-4033-b63f-07de5b1cf926/files/1e57c102-155b-4e6a-8ff6-2b0824e1320c.jpg'
+    },
+    {
+      title: '14-местный номер',
+      capacity: '14 человек',
+      description: 'Большой номер для группы с собственным санузлом и душем',
+      price: '900 ₽',
+      image: 'https://cdn.poehali.dev/projects/b9b6d5e9-7202-4033-b63f-07de5b1cf926/files/1e57c102-155b-4e6a-8ff6-2b0824e1320c.jpg'
+    }
+  ];
+
+  return (
+    <>
+      <section id="about" className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            <h2 className="text-4xl font-bold text-foreground">О хостеле</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Наш хостел предлагает комфортное размещение от 4 до 14 человек в номере. 
+              Каждый номер оснащен собственным туалетом и душем для вашего удобства.
+              Работаем с компаниями по проживанию и питанию Ваших работников.
+            </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 pt-8">
+              <Card className="border-2 hover:border-primary transition-colors">
+                <CardHeader>
+                  <Icon name="Bed" className="text-primary mx-auto mb-4" size={48} />
+                  <CardTitle>Чистое белье</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    При заселении выдается чистое постельное белье и полотенце
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="border-2 hover:border-primary transition-colors">
+                <CardHeader>
+                  <Icon name="Shower" className="text-primary mx-auto mb-4" size={48} />
+                  <CardTitle>Личный санузел</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Каждый номер с собственным туалетом и душем
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="border-2 hover:border-primary transition-colors">
+                <CardHeader>
+                  <Icon name="MapPin" className="text-primary mx-auto mb-4" size={48} />
+                  <CardTitle>Рядом с МЦ</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Миграционный центр в шаговой доступности от хостела
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="border-2 hover:border-primary transition-colors">
+                <CardHeader>
+                  <Icon name="Briefcase" className="text-primary mx-auto mb-4" size={48} />
+                  <CardTitle>Для компаний</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Оказываем комплексную услугу Компаниям по проживанию/питанию/трансферу Ваших работников
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="rooms" className="py-16 bg-secondary/10">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center text-foreground mb-12">Наши номера</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {rooms.map((room, index) => (
+              <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow flex flex-col">
+                <img
+                  src={room.image}
+                  alt={room.title}
+                  className="w-full h-64 object-cover"
+                />
+                <CardHeader>
+                  <CardTitle className="text-2xl">{room.title}</CardTitle>
+                  <CardDescription className="flex items-center gap-2">
+                    <Icon name="Users" size={18} />
+                    {room.capacity}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4 flex flex-col flex-1">
+                  <p className="text-muted-foreground flex-1">{room.description}</p>
+                  <div className="flex items-center justify-between pt-4">
+                    <span className="text-3xl font-bold text-primary">{room.price}</span>
+                    <span className="text-sm text-muted-foreground">за койко-место</span>
+                  </div>
+                  <Button className="w-full" onClick={() => scrollToSection('booking')}>
+                    Забронировать
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default RoomsSection;
