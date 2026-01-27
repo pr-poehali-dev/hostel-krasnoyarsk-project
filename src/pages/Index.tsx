@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -14,6 +14,47 @@ import {
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('hero');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+
+  const handleBookingSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitMessage('');
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name'),
+      phone: formData.get('phone'),
+      email: formData.get('email'),
+      checkin: formData.get('checkin'),
+      checkout: formData.get('checkout'),
+      guests: formData.get('guests'),
+      meals: formData.get('meals'),
+      message: formData.get('message')
+    };
+
+    try {
+      const response = await fetch('https://functions.poehali.dev/53582130-3f6f-4a05-b821-2d8c7f324138', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitMessage('✅ Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+        e.currentTarget.reset();
+      } else {
+        setSubmitMessage('❌ Ошибка отправки: ' + (result.error || 'Попробуйте позже'));
+      }
+    } catch (error) {
+      setSubmitMessage('❌ Ошибка соединения. Проверьте интернет и попробуйте снова.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const rooms = [
     {
@@ -348,38 +389,38 @@ const Index = () => {
             </p>
             <Card>
               <CardContent className="pt-6">
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleBookingSubmit}>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="name">Имя *</Label>
-                      <Input id="name" placeholder="Ваше имя" required />
+                      <Input id="name" name="name" placeholder="Ваше имя" required />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="phone">Телефон *</Label>
-                      <Input id="phone" type="tel" placeholder="+7 (___) ___-__-__" required />
+                      <Input id="phone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" required />
                     </div>
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" placeholder="your@email.com" />
+                    <Input id="email" name="email" type="email" placeholder="your@email.com" />
                   </div>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="checkin">Дата заезда *</Label>
-                      <Input id="checkin" type="date" required />
+                      <Input id="checkin" name="checkin" type="date" required />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="checkout">Дата выезда *</Label>
-                      <Input id="checkout" type="date" required />
+                      <Input id="checkout" name="checkout" type="date" required />
                     </div>
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="guests">Количество гостей *</Label>
-                    <Input id="guests" type="number" min="1" placeholder="Укажите количество" required />
+                    <Input id="guests" name="guests" type="number" min="1" placeholder="Укажите количество" required />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="meals">Питание</Label>
-                    <select id="meals" className="w-full px-3 py-2 border border-input rounded-md bg-background">
+                    <select id="meals" name="meals" className="w-full px-3 py-2 border border-input rounded-md bg-background">
                       <option value="">Без питания</option>
                       <option value="2">Двухразовое питание (+900 ₽/день)</option>
                       <option value="3">Трёхразовое питание (+1100 ₽/день)</option>
@@ -387,10 +428,15 @@ const Index = () => {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="message">Дополнительная информация</Label>
-                    <Textarea id="message" placeholder="Особые пожелания или вопросы" rows={4} />
+                    <Textarea id="message" name="message" placeholder="Особые пожелания или вопросы" rows={4} />
                   </div>
-                  <Button type="submit" size="lg" className="w-full text-lg">
-                    Отправить заявку
+                  {submitMessage && (
+                    <div className={`p-4 rounded-md text-center ${submitMessage.includes('✅') ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
+                      {submitMessage}
+                    </div>
+                  )}
+                  <Button type="submit" size="lg" className="w-full text-lg" disabled={isSubmitting}>
+                    {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
                   </Button>
                 </form>
               </CardContent>
