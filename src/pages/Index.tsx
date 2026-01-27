@@ -257,7 +257,7 @@ const Index = () => {
                     <p className="text-sm">Чистое постельное белье и полотенце</p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <Icon name="Droplets" className="text-primary mt-1" size={20} />
+                    <Icon name="Bath" className="text-primary mt-1" size={20} />
                     <p className="text-sm">Собственный туалет и душ в номере</p>
                   </div>
                 </CardContent>
