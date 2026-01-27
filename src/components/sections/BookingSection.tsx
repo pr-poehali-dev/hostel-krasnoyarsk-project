@@ -152,14 +152,7 @@ const BookingSection = () => {
                   <Icon name="MapPin" className="text-primary mt-1" size={24} />
                   <div>
                     <h4 className="font-semibold mb-1">Адрес</h4>
-                    <p className="text-muted-foreground">Красноярск, ул. Батурина, дом 7</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <Icon name="Phone" className="text-primary mt-1" size={24} />
-                  <div>
-                    <h4 className="font-semibold mb-1">Телефон</h4>
-                    <p className="text-muted-foreground">+7 923 370 12 00</p>
+                    <p className="text-muted-foreground">г. Красноярск, 2-я Красногорская улица, дом 3</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">

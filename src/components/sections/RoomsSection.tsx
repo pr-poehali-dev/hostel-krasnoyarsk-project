@@ -45,12 +45,12 @@ const RoomsSection = ({ scrollToSection }: RoomsSectionProps) => {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 pt-8">
               <Card className="border-2 hover:border-primary transition-colors">
                 <CardHeader>
-                  <Icon name="Bed" className="text-primary mx-auto mb-4" size={48} />
-                  <CardTitle>Чистое белье</CardTitle>
+                  <Icon name="Utensils" className="text-primary mx-auto mb-4" size={48} />
+                  <CardTitle>Питание</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    При заселении выдается чистое постельное белье и полотенце
+                    Вкусно кормим домашней едой (на выбор два или три раза в день!)
                   </p>
                 </CardContent>
               </Card>

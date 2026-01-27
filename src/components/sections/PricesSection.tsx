@@ -96,11 +96,11 @@ const PricesSection = () => {
                   <AccordionContent className="space-y-4 pt-4">
                     <div>
                       <h4 className="font-semibold mb-2">Завтрак</h4>
-                      <p className="text-muted-foreground">Каша, яйца, выпечка, чай/кофе</p>
+                      <p className="text-muted-foreground">Каша, яйца, выпечка, чай, хлеб</p>
                     </div>
                     <div>
                       <h4 className="font-semibold mb-2">Обед</h4>
-                      <p className="text-muted-foreground">Суп, второе блюдо, гарнир, компот, хлеб</p>
+                      <p className="text-muted-foreground">Суп, второе блюдо, гарнир, компот, выпечка, хлеб</p>
                     </div>
                     <div>
                       <h4 className="font-semibold mb-2">Ужин</h4>
