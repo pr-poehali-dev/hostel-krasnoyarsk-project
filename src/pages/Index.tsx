@@ -167,10 +167,10 @@ const Index = () => {
               <Card className="border-2 hover:border-primary transition-colors">
                 <CardHeader>
                   <Icon name="MapPinned" className="text-primary mx-auto mb-4" size={48} />
-                  <CardTitle className="text-center text-base leading-tight">Удобное расположение</CardTitle>
+                  <CardTitle className="text-center leading-tight px-2">Удобное расположение</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground text-sm">
+                  <p className="text-muted-foreground">
                     В шаговой доступности от Миграционного центра
                   </p>
                 </CardContent>
