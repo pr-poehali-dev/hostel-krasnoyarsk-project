@@ -19,7 +19,8 @@ def handler(event: dict, context) -> dict:
                 'Access-Control-Allow-Methods': 'POST, OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type'
             },
-            'body': ''
+            'body': '',
+            'isBase64Encoded': False
         }
     
     if method != 'POST':
@@ -29,7 +30,8 @@ def handler(event: dict, context) -> dict:
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             },
-            'body': json.dumps({'error': 'Method not allowed'})
+            'body': json.dumps({'error': 'Method not allowed'}),
+            'isBase64Encoded': False
         }
     
     try:
@@ -51,7 +53,8 @@ def handler(event: dict, context) -> dict:
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*'
                 },
-                'body': json.dumps({'error': 'Заполните все обязательные поля'})
+                'body': json.dumps({'error': 'Заполните все обязательные поля'}),
+                'isBase64Encoded': False
             }
         
         meals_text = {
@@ -96,7 +99,8 @@ def handler(event: dict, context) -> dict:
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*'
                 },
-                'body': json.dumps({'error': 'Email не настроен'})
+                'body': json.dumps({'error': 'Email не настроен'}),
+                'isBase64Encoded': False
             }
         
         with smtplib.SMTP_SSL('smtp.mail.ru', 465) as server:
@@ -109,7 +113,8 @@ def handler(event: dict, context) -> dict:
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             },
-            'body': json.dumps({'success': True, 'message': 'Заявка отправлена'})
+            'body': json.dumps({'success': True, 'message': 'Заявка отправлена'}),
+            'isBase64Encoded': False
         }
         
     except Exception as e:
@@ -119,5 +124,6 @@ def handler(event: dict, context) -> dict:
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             },
-            'body': json.dumps({'error': str(e)})
+            'body': json.dumps({'error': str(e)}),
+            'isBase64Encoded': False
         }
