@@ -106,7 +106,7 @@ const Index = () => {
                   Узнать больше
                 </Button>
               </div>
-              <div className="flex gap-8 pt-4">
+              <div className="flex flex-wrap gap-6 pt-4">
                 <div className="flex items-center gap-2">
                   <Icon name="Users" className="text-primary" size={24} />
                   <span className="text-foreground font-semibold">Комнаты от 4-х до 14-ти мест</span>
@@ -116,8 +116,8 @@ const Index = () => {
                   <span className="text-foreground font-semibold">Питание</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Icon name="MapPin" className="text-primary" size={24} />
-                  <span className="text-foreground font-semibold">Центр города</span>
+                  <Icon name="HardHat" className="text-primary" size={24} />
+                  <span className="text-foreground font-semibold">Работаем с Компаниями</span>
                 </div>
               </div>
             </div>
@@ -141,7 +141,7 @@ const Index = () => {
               Каждый номер оснащен собственным туалетом и душем для вашего удобства.
               Работаем с компаниями по проживанию и питанию Ваших работников.
             </p>
-            <div className="grid md:grid-cols-3 gap-8 pt-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 pt-8">
               <Card className="border-2 hover:border-primary transition-colors">
                 <CardHeader>
                   <Icon name="Bed" className="text-primary mx-auto mb-4" size={48} />
@@ -175,6 +175,17 @@ const Index = () => {
                   </p>
                 </CardContent>
               </Card>
+              <Card className="border-2 hover:border-primary transition-colors">
+                <CardHeader>
+                  <Icon name="Briefcase" className="text-primary mx-auto mb-4" size={48} />
+                  <CardTitle>Для компаний</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Оказываем комплексную услугу Компаниям по проживанию/питанию/трансферу Ваших работников
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
@@ -198,13 +209,13 @@ const Index = () => {
                     {room.capacity}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-4 flex flex-col h-full">
                   <p className="text-muted-foreground">{room.description}</p>
                   <div className="flex items-center justify-between pt-4">
                     <span className="text-3xl font-bold text-primary">{room.price}</span>
                     <span className="text-sm text-muted-foreground">за койко-место</span>
                   </div>
-                  <Button className="w-full" onClick={() => scrollToSection('booking')}>
+                  <Button className="w-full mt-auto" onClick={() => scrollToSection('booking')}>
                     Забронировать
                   </Button>
                 </CardContent>
@@ -411,7 +422,7 @@ const Index = () => {
                   <Icon name="Mail" className="text-primary mt-1" size={24} />
                   <div>
                     <h4 className="font-semibold mb-1">Email</h4>
-                    <p className="text-muted-foreground">info@hostel-krsk.ru</p>
+                    <p className="text-muted-foreground">hostel.bl124@mail.ru</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -423,11 +434,17 @@ const Index = () => {
                 </div>
               </CardContent>
             </Card>
-            <div className="bg-muted rounded-xl flex items-center justify-center p-8">
-              <div className="text-center space-y-4">
-                <Icon name="Map" className="text-primary mx-auto" size={64} />
-                <p className="text-muted-foreground">Карта будет здесь</p>
-              </div>
+            <div className="rounded-xl overflow-hidden shadow-lg">
+              <iframe 
+                src="https://yandex.ru/map-widget/v1/?ll=92.869235%2C56.017991&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1Njg3MzQ3MhJJ0KDQvtGB0YHQuNGPLCDQmtGA0LDRgdC90L7Rj9GA0YHQuiwg0YPQu9C40YbQsCAy0Y8g0JrRgNCw0YHQvdC-0LPQvtGA0YHQutCw0Y8sIDMiCg1qMXxCFUzQV0I%2C&z=16.84"
+                width="100%"
+                height="400"
+                frameBorder="0"
+                style={{ border: 0 }}
+                allowFullScreen
+                aria-hidden="false"
+                tabIndex={0}
+              />
             </div>
           </div>
         </div>
