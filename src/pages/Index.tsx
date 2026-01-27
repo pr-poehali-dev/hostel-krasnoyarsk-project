@@ -395,7 +395,7 @@ const Index = () => {
                   <div>
                     <h4 className="font-semibold mb-1">Адрес</h4>
                     <p className="text-muted-foreground">
-                      г. Красноярск, в шаговой доступности от Миграционного центра
+                      г. Красноярск, улица 2-я Красногорская, дом 3
                     </p>
                   </div>
                 </div>
