@@ -139,6 +139,7 @@ const Index = () => {
             <p className="text-lg text-muted-foreground leading-relaxed">
               Наш хостел предлагает комфортное размещение от 4 до 14 человек в номере. 
               Каждый номер оснащен собственным туалетом и душем для вашего удобства.
+              Работаем с компаниями по проживанию и питанию Ваших работников.
             </p>
             <div className="grid md:grid-cols-3 gap-8 pt-8">
               <Card className="border-2 hover:border-primary transition-colors">
