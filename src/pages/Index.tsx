@@ -95,8 +95,8 @@ const Index = () => {
                 Добро пожаловать в наш хостел
               </h2>
               <p className="text-xl text-muted-foreground">
-                Уютное размещение в центре Красноярска с домашней атмосферой. 
-                Удобное расположение рядом с Миграционным центром.
+                Уютное размещение в Красноярске с домашней атмосферой. 
+                В шаговой доступности от Миграционного центра.
               </p>
               <div className="flex gap-4">
                 <Button onClick={() => scrollToSection('booking')} size="lg" className="text-lg">
