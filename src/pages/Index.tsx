@@ -71,7 +71,7 @@ const Index = () => {
       <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-primary">Хостел Красноярск</h1>
+            <h1 className="text-2xl font-bold text-primary">Хостел в г. Красноярск</h1>
             <div className="hidden md:flex gap-6">
               {['Главная', 'О нас', 'Номера', 'Цены', 'Галерея', 'Контакты'].map((item, index) => (
                 <button
