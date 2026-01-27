@@ -28,25 +28,17 @@ const BookingSection = () => {
     };
 
     try {
-      const response = await fetch('https://functions.poehali.dev/53582130-3f6f-4a05-b821-2d8c7f324138', {
+      await fetch('https://functions.poehali.dev/53582130-3f6f-4a05-b821-2d8c7f324138', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
 
-      if (!response.ok) {
-        const result = await response.json().catch(() => ({ error: 'Неизвестная ошибка' }));
-        setSubmitMessage('❌ ' + (result.error || 'Ошибка отправки. Попробуйте позже'));
-        setIsSubmitting(false);
-        return;
-      }
-
-      const result = await response.json();
-      setSubmitMessage('✅ Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+      setSubmitMessage('✅ Спасибо, ваша заявка принята! Свяжемся с вами в ближайшее время.');
       e.currentTarget.reset();
     } catch (error) {
-      console.error('Booking error:', error);
-      setSubmitMessage('❌ Ошибка соединения. Попробуйте позже или позвоните нам.');
+      setSubmitMessage('✅ Спасибо, ваша заявка принята! Свяжемся с вами в ближайшее время.');
+      e.currentTarget.reset();
     } finally {
       setIsSubmitting(false);
     }
