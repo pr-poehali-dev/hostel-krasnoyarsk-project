@@ -304,11 +304,14 @@ const Index = () => {
                       </div>
                       <div>
                         <h4 className="font-semibold mb-2">Обед</h4>
-                        <p className="text-muted-foreground">Суп, второе блюдо, гарнир, компот</p>
+                        <p className="text-muted-foreground">Суп, второе блюдо, гарнир, компот, хлеб</p>
                       </div>
                       <div>
                         <h4 className="font-semibold mb-2">Ужин</h4>
-                        <p className="text-muted-foreground">Горячее блюдо, салат, чай</p>
+                        <p className="text-muted-foreground">Горячее блюдо, салат, выпечка, чай, хлеб</p>
+                      </div>
+                      <div>
+                        <p className="text-muted-foreground italic">Меню обновляется каждый день</p>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
@@ -438,15 +441,10 @@ const Index = () => {
               </CardContent>
             </Card>
             <div className="rounded-xl overflow-hidden shadow-lg">
-              <iframe 
-                src="https://yandex.ru/map-widget/v1/?ll=92.869235%2C56.017991&z=17&l=map&pt=92.869235,56.017991,pm2rdm"
-                width="100%"
-                height="400"
-                frameBorder="0"
-                style={{ border: 0 }}
-                allowFullScreen
-                aria-hidden="false"
-                tabIndex={0}
+              <img 
+                src="https://cdn.poehali.dev/files/b7c33b32-1062-4995-9df3-17e97c480545.png"
+                alt="Карта расположения хостела"
+                className="w-full h-[400px] object-cover"
               />
             </div>
           </div>
