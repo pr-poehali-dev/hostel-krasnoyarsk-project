@@ -34,16 +34,19 @@ const BookingSection = () => {
         body: JSON.stringify(data)
       });
 
-      const result = await response.json();
-
-      if (response.ok) {
-        setSubmitMessage('✅ Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
-        e.currentTarget.reset();
-      } else {
-        setSubmitMessage('❌ Ошибка отправки: ' + (result.error || 'Попробуйте позже'));
+      if (!response.ok) {
+        const result = await response.json().catch(() => ({ error: 'Неизвестная ошибка' }));
+        setSubmitMessage('❌ ' + (result.error || 'Ошибка отправки. Попробуйте позже'));
+        setIsSubmitting(false);
+        return;
       }
+
+      const result = await response.json();
+      setSubmitMessage('✅ Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+      e.currentTarget.reset();
     } catch (error) {
-      setSubmitMessage('❌ Ошибка соединения. Проверьте интернет и попробуйте снова.');
+      console.error('Booking error:', error);
+      setSubmitMessage('❌ Ошибка соединения. Попробуйте позже или позвоните нам.');
     } finally {
       setIsSubmitting(false);
     }

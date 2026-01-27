@@ -103,9 +103,30 @@ def handler(event: dict, context) -> dict:
                 'isBase64Encoded': False
             }
         
-        with smtplib.SMTP_SSL('smtp.mail.ru', 465) as server:
-            server.login('hostel.bl124@mail.ru', email_password)
-            server.send_message(msg)
+        try:
+            with smtplib.SMTP_SSL('smtp.mail.ru', 465, timeout=10) as server:
+                server.login('hostel.bl124@mail.ru', email_password)
+                server.send_message(msg)
+        except smtplib.SMTPAuthenticationError:
+            return {
+                'statusCode': 500,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'body': json.dumps({'error': 'Ошибка авторизации почты. Обратитесь к администратору.'}),
+                'isBase64Encoded': False
+            }
+        except smtplib.SMTPException as e:
+            return {
+                'statusCode': 500,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'body': json.dumps({'error': f'Ошибка отправки почты: {str(e)}'}),
+                'isBase64Encoded': False
+            }
         
         return {
             'statusCode': 200,
@@ -117,6 +138,16 @@ def handler(event: dict, context) -> dict:
             'isBase64Encoded': False
         }
         
+    except json.JSONDecodeError:
+        return {
+            'statusCode': 400,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps({'error': 'Неверный формат данных'}),
+            'isBase64Encoded': False
+        }
     except Exception as e:
         return {
             'statusCode': 500,
@@ -124,6 +155,6 @@ def handler(event: dict, context) -> dict:
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             },
-            'body': json.dumps({'error': str(e)}),
+            'body': json.dumps({'error': f'Непредвиденная ошибка: {str(e)}'}),
             'isBase64Encoded': False
         }
