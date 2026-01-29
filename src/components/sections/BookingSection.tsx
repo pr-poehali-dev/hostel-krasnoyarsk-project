@@ -52,16 +52,16 @@ const BookingSection = () => {
 
   return (
     <>
-      <section id="gallery" className="py-16 bg-secondary/10">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center text-foreground mb-12">Фотогалерея</h2>
-          <div className="grid md:grid-cols-3 gap-6">
+      <section id="gallery" className="py-12 sm:py-16 bg-secondary/10">
+        <div className="container mx-auto px-4 sm:px-6">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center text-foreground mb-8 sm:mb-12">Фотогалерея</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             {galleryImages.map((image, index) => (
-              <div key={index} className="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow cursor-pointer">
+              <div key={index} className="rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow cursor-pointer">
                 <img
                   src={image}
                   alt={`Фото хостела ${index + 1}`}
-                  className="w-full h-80 object-cover hover:scale-105 transition-transform duration-300"
+                  className="w-full h-56 sm:h-80 object-cover hover:scale-105 transition-transform duration-300"
                 />
               </div>
             ))}
@@ -69,17 +69,17 @@ const BookingSection = () => {
         </div>
       </section>
 
-      <section id="booking" className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+      <section id="booking" className="py-12 sm:py-16 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mx-auto">
-            <h2 className="text-4xl font-bold text-center text-foreground mb-4">Бронирование</h2>
-            <p className="text-center text-muted-foreground mb-8">
+            <h2 className="text-3xl sm:text-4xl font-bold text-center text-foreground mb-3 sm:mb-4">Бронирование</h2>
+            <p className="text-center text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">
               Заполните форму, и мы свяжемся с вами в ближайшее время
             </p>
             <Card>
-              <CardContent className="pt-6">
-                <form className="space-y-6" onSubmit={handleBookingSubmit}>
-                  <div className="grid md:grid-cols-2 gap-4">
+              <CardContent className="pt-4 sm:pt-6">
+                <form className="space-y-4 sm:space-y-6" onSubmit={handleBookingSubmit}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="name">Имя *</Label>
                       <Input id="name" name="name" placeholder="Ваше имя" required />
@@ -93,7 +93,7 @@ const BookingSection = () => {
                     <Label htmlFor="email">Email</Label>
                     <Input id="email" name="email" type="email" placeholder="your@email.com" />
                   </div>
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="checkin">Дата заезда *</Label>
                       <Input id="checkin" name="checkin" type="date" required />
@@ -109,7 +109,7 @@ const BookingSection = () => {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="meals">Питание</Label>
-                    <select id="meals" name="meals" className="w-full px-3 py-2 border border-input rounded-md bg-background">
+                    <select id="meals" name="meals" className="w-full px-3 py-2 text-sm sm:text-base border border-input rounded-md bg-background">
                       <option value="">Без питания</option>
                       <option value="2">Двухразовое питание (+900 ₽/день)</option>
                       <option value="3">Трёхразовое питание (+1100 ₽/день)</option>
@@ -120,11 +120,11 @@ const BookingSection = () => {
                     <Textarea id="message" name="message" placeholder="Особые пожелания или вопросы" rows={4} />
                   </div>
                   {submitMessage && (
-                    <div className={`p-4 rounded-md text-center ${submitMessage.includes('✅') ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
+                    <div className={`p-3 sm:p-4 rounded-md text-center text-sm sm:text-base ${submitMessage.includes('✅') ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
                       {submitMessage}
                     </div>
                   )}
-                  <Button type="submit" size="lg" className="w-full text-lg" disabled={isSubmitting}>
+                  <Button type="submit" size="lg" className="w-full text-base sm:text-lg" disabled={isSubmitting}>
                     {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
                   </Button>
                 </form>
@@ -134,45 +134,45 @@ const BookingSection = () => {
         </div>
       </section>
 
-      <section id="contacts" className="py-16 bg-secondary/20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center text-foreground mb-12">Контакты</h2>
-          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+      <section id="contacts" className="py-12 sm:py-16 bg-secondary/20">
+        <div className="container mx-auto px-4 sm:px-6">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center text-foreground mb-8 sm:mb-12">Контакты</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-12 max-w-5xl mx-auto">
             <Card>
               <CardHeader>
-                <CardTitle className="text-2xl">Как нас найти</CardTitle>
+                <CardTitle className="text-xl sm:text-2xl">Как нас найти</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <Icon name="MapPin" className="text-primary mt-1" size={24} />
+              <CardContent className="space-y-4 sm:space-y-6">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <Icon name="MapPin" className="text-primary mt-1" size={20} />
                   <div>
-                    <h4 className="font-semibold mb-1">Адрес</h4>
-                    <p className="text-muted-foreground">г. Красноярск, 2-я Красногорская улица, дом 3</p>
+                    <h4 className="font-semibold mb-1 text-sm sm:text-base">Адрес</h4>
+                    <p className="text-sm sm:text-base text-muted-foreground">г. Красноярск, 2-я Красногорская улица, дом 3</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <Icon name="Clock" className="text-primary mt-1" size={24} />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <Icon name="Clock" className="text-primary mt-1" size={20} />
                   <div>
-                    <h4 className="font-semibold mb-1">Время заселения</h4>
-                    <p className="text-muted-foreground">Круглосуточно</p>
+                    <h4 className="font-semibold mb-1 text-sm sm:text-base">Время заселения</h4>
+                    <p className="text-sm sm:text-base text-muted-foreground">Круглосуточно</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
-            <div className="rounded-xl overflow-hidden shadow-lg">
+            <div className="rounded-lg sm:rounded-xl overflow-hidden shadow-lg">
               <img 
                 src="https://cdn.poehali.dev/files/b7c33b32-1062-4995-9df3-17e97c480545.png"
                 alt="Карта расположения хостела"
-                className="w-full h-[400px] object-cover"
+                className="w-full h-[280px] sm:h-[400px] object-cover"
               />
             </div>
           </div>
         </div>
       </section>
 
-      <footer className="bg-foreground text-background py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-sm">
+      <footer className="bg-foreground text-background py-6 sm:py-8">
+        <div className="container mx-auto px-4 sm:px-6 text-center">
+          <p className="text-xs sm:text-sm">
             © 2024 Хостел в г. Красноярск. Все права защищены.
           </p>
         </div>
