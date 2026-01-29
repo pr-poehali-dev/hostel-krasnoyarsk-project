@@ -13,7 +13,7 @@ const RoomsSection = ({ scrollToSection }: RoomsSectionProps) => {
       capacity: '4 человека',
       description: 'Уютный номер с четырьмя спальными местами, собственным санузлом и душем',
       price: '900 ₽',
-      image: 'https://cdn.poehali.dev/projects/b9b6d5e9-7202-4033-b63f-07de5b1cf926/files/1e57c102-155b-4e6a-8ff6-2b0824e1320c.jpg'
+      image: 'https://cdn.poehali.dev/projects/b9b6d5e9-7202-4033-b63f-07de5b1cf926/bucket/65fc555f-7ff9-4642-b80c-523166ecbd82.jpg'
     },
     {
       title: '8-местный номер',
@@ -98,11 +98,14 @@ const RoomsSection = ({ scrollToSection }: RoomsSectionProps) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             {rooms.map((room, index) => (
               <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow flex flex-col">
-                <img
-                  src={room.image}
-                  alt={room.title}
-                  className="w-full h-48 sm:h-64 object-cover"
-                />
+                <div className="relative w-full h-48 sm:h-64 overflow-hidden bg-secondary/5">
+                  <img
+                    src={room.image}
+                    alt={room.title}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
                 <CardHeader>
                   <CardTitle className="text-xl sm:text-2xl">{room.title}</CardTitle>
                   <CardDescription className="flex items-center gap-2">
