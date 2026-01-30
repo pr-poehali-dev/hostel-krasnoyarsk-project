@@ -1,0 +1,10 @@
+{
+  "tests": [
+    {
+      "name": "Get content without auth should fail",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 401
+    }
+  ]
+}
