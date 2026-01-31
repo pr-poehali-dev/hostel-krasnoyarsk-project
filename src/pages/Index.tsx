@@ -3,6 +3,7 @@ import Icon from '@/components/ui/icon';
 import HeroSection from '@/components/sections/HeroSection';
 import RoomsSection from '@/components/sections/RoomsSection';
 import PricesSection from '@/components/sections/PricesSection';
+import GallerySection from '@/components/sections/GallerySection';
 import BookingSection from '@/components/sections/BookingSection';
 
 const Index = () => {
@@ -63,6 +64,7 @@ const Index = () => {
       <HeroSection scrollToSection={scrollToSection} />
       <RoomsSection scrollToSection={scrollToSection} />
       <PricesSection />
+      <GallerySection />
       <BookingSection />
     </div>
   );
