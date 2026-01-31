@@ -12,7 +12,7 @@ const HeroSection = ({ scrollToSection }: HeroSectionProps) => {
         <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
           <div className="space-y-4 sm:space-y-6">
             <h2 className="text-3xl sm:text-5xl font-bold text-foreground leading-tight">
-              Добро пожаловать в хостел г. Красноярск
+              Добро пожаловать в наш хостел
             </h2>
             <p className="text-base sm:text-xl text-muted-foreground">
               Уютное размещение в Красноярске с домашней атмосферой. 
