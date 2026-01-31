@@ -1,7 +1,8 @@
 const GallerySection = () => {
   const images = [
     'https://cdn.poehali.dev/files/0ad0e3f9-3292-4355-8e4a-a5ad41a5459d.jpg',
-    'https://cdn.poehali.dev/files/f438dff6-710a-447a-8276-b522408b2a6d.jpg'
+    'https://cdn.poehali.dev/files/f438dff6-710a-447a-8276-b522408b2a6d.jpg',
+    'https://cdn.poehali.dev/files/3622d273-d9fb-4caa-a8c5-a21dc52fbb4e.jpg'
   ];
 
   return (
