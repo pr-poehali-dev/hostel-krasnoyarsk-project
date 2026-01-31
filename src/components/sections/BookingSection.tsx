@@ -44,31 +44,8 @@ const BookingSection = () => {
     }
   };
 
-  const galleryImages = [
-    'https://cdn.poehali.dev/projects/b9b6d5e9-7202-4033-b63f-07de5b1cf926/files/1e57c102-155b-4e6a-8ff6-2b0824e1320c.jpg',
-    'https://cdn.poehali.dev/projects/b9b6d5e9-7202-4033-b63f-07de5b1cf926/files/917215e9-8372-44bd-b9a9-87e34f9e18f6.jpg',
-    'https://cdn.poehali.dev/projects/b9b6d5e9-7202-4033-b63f-07de5b1cf926/files/7f4b772b-684a-4398-b450-5618168197bb.jpg'
-  ];
-
   return (
     <>
-      <section id="gallery" className="py-12 sm:py-16 bg-secondary/10">
-        <div className="container mx-auto px-4 sm:px-6">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center text-foreground mb-8 sm:mb-12">Фотогалерея</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-            {galleryImages.map((image, index) => (
-              <div key={index} className="rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow cursor-pointer">
-                <img
-                  src={image}
-                  alt={`Фото хостела ${index + 1}`}
-                  className="w-full h-56 sm:h-80 object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section id="booking" className="py-12 sm:py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mx-auto">
