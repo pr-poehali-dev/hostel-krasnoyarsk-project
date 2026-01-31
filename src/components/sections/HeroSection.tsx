@@ -43,7 +43,7 @@ const HeroSection = ({ scrollToSection }: HeroSectionProps) => {
           </div>
           <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
             <img
-              src="https://cdn.poehali.dev/projects/b9b6d5e9-7202-4033-b63f-07de5b1cf926/files/7f4b772b-684a-4398-b450-5618168197bb.jpg"
+              src="https://cdn.poehali.dev/files/eb8724d6-68e6-414c-864c-b75035404a0a.jpg"
               alt="Хостел"
               className="w-full h-[280px] sm:h-[500px] object-cover"
             />

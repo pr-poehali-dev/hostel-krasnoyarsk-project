@@ -13,7 +13,7 @@ const RoomsSection = ({ scrollToSection }: RoomsSectionProps) => {
       capacity: '4 человека',
       description: 'Уютный номер с четырьмя спальными местами, собственным санузлом и душем',
       price: '900 ₽',
-      image: 'https://cdn.poehali.dev/files/eb8724d6-68e6-414c-864c-b75035404a0a.jpg'
+      image: 'https://cdn.poehali.dev/files/a2fe496b-1941-4729-966b-81ce98db8c57.jpg'
     },
     {
       title: '8-местный номер',
