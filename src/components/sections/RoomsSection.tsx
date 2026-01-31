@@ -27,7 +27,7 @@ const RoomsSection = ({ scrollToSection }: RoomsSectionProps) => {
       capacity: '14 человек',
       description: 'Большой номер для группы с собственным санузлом и душем',
       price: '900 ₽',
-      image: 'https://cdn.poehali.dev/projects/b9b6d5e9-7202-4033-b63f-07de5b1cf926/files/1e57c102-155b-4e6a-8ff6-2b0824e1320c.jpg'
+      image: 'https://cdn.poehali.dev/files/07638c2d-3ec1-4753-9d1c-10ab0efcaffd.jpg'
     }
   ];
 
