@@ -128,6 +128,15 @@ const BookingSection = () => {
                   </div>
                 </div>
                 <div className="flex items-start gap-3 sm:gap-4">
+                  <Icon name="Mail" className="text-primary mt-1" size={20} />
+                  <div>
+                    <h4 className="font-semibold mb-1 text-sm sm:text-base">Email</h4>
+                    <a href="mailto:hostel.bl124@mail.ru" className="text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors">
+                      hostel.bl124@mail.ru
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 sm:gap-4">
                   <Icon name="Clock" className="text-primary mt-1" size={20} />
                   <div>
                     <h4 className="font-semibold mb-1 text-sm sm:text-base">Время заселения</h4>
