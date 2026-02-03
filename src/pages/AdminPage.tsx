@@ -55,7 +55,13 @@ export default function AdminPage() {
     setMessage('');
 
     try {
-      const response = await fetch(`${API_URL}?token=${encodeURIComponent(token)}`);
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ action: 'login', token })
+      });
 
       if (response.ok) {
         const data = await response.json();
@@ -80,12 +86,12 @@ export default function AdminPage() {
     setMessage('');
 
     try {
-      const response = await fetch(`${API_URL}?token=${encodeURIComponent(token)}`, {
+      const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(content)
+        body: JSON.stringify({ action: 'save', token, content })
       });
 
       if (response.ok) {

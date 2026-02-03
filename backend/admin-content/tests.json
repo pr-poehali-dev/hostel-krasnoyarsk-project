@@ -1,9 +1,13 @@
 {
   "tests": [
     {
-      "name": "Get content without auth should fail",
-      "method": "GET",
+      "name": "Login without token should fail",
+      "method": "POST",
       "path": "/",
+      "body": {
+        "action": "login",
+        "token": "wrong-token"
+      },
       "expectedStatus": 401
     }
   ]

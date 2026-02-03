@@ -18,16 +18,21 @@ def handler(event: dict, context) -> dict:
             'body': ''
         }
     
-    query_params = event.get('queryStringParameters', {}) or {}
-    admin_token = query_params.get('token', '')
+    admin_token = ''
+    body_data = {}
+    
+    if method == 'POST':
+        body_data = json.loads(event.get('body', '{}'))
+        admin_token = body_data.get('token', '')
     
     expected_token = os.environ.get('ADMIN_TOKEN', '')
     
+    print(f"DEBUG: Method: {method}")
     print(f"DEBUG: Received token: '{admin_token}'")
     print(f"DEBUG: Expected token from env: '{expected_token}'")
     print(f"DEBUG: Token match: {admin_token == expected_token}")
     
-    if not admin_token or admin_token != expected_token:
+    if method == 'POST' and (not admin_token or admin_token != expected_token):
         return {
             'statusCode': 401,
             'headers': {
@@ -45,49 +50,52 @@ def handler(event: dict, context) -> dict:
     
     content_key = 'data/content.json'
     
-    if method == 'GET':
-        try:
-            response = s3.get_object(Bucket='files', Key=content_key)
-            content_data = response['Body'].read().decode('utf-8')
+    if method == 'POST':
+        action = body_data.get('action', '')
+        
+        if action == 'login':
+            try:
+                response = s3.get_object(Bucket='files', Key=content_key)
+                content_data = response['Body'].read().decode('utf-8')
+                return {
+                    'statusCode': 200,
+                    'headers': {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    },
+                    'body': content_data
+                }
+            except Exception:
+                with open('/var/task/default-content.json', 'r', encoding='utf-8') as f:
+                    default_content = f.read()
+                return {
+                    'statusCode': 200,
+                    'headers': {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    },
+                    'body': default_content
+                }
+        
+        elif action == 'save':
+            content = body_data.get('content', {})
+            content_json = json.dumps(content, ensure_ascii=False, indent=2)
+            
+            s3.put_object(
+                Bucket='files',
+                Key=content_key,
+                Body=content_json.encode('utf-8'),
+                ContentType='application/json'
+            )
+            
             return {
                 'statusCode': 200,
                 'headers': {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*'
                 },
-                'body': content_data
+                'body': json.dumps({'success': True, 'message': 'Контент успешно обновлен'})
             }
-        except Exception:
-            with open('/var/task/default-content.json', 'r', encoding='utf-8') as f:
-                default_content = f.read()
-            return {
-                'statusCode': 200,
-                'headers': {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                'body': default_content
-            }
-    
-    elif method == 'POST':
-        body = json.loads(event.get('body', '{}'))
-        content_json = json.dumps(body, ensure_ascii=False, indent=2)
-        
-        s3.put_object(
-            Bucket='files',
-            Key=content_key,
-            Body=content_json.encode('utf-8'),
-            ContentType='application/json'
-        )
-        
-        return {
-            'statusCode': 200,
-            'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            'body': json.dumps({'success': True, 'message': 'Контент успешно обновлен'})
-        }
     
     return {
         'statusCode': 405,
