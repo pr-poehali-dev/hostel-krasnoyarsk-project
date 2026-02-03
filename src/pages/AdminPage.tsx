@@ -11,15 +11,6 @@ interface ContentData {
     title: string;
     subtitle: string;
   };
-  about: {
-    title: string;
-    description: string;
-    features: Array<{
-      icon: string;
-      title: string;
-      description: string;
-    }>;
-  };
   rooms: Array<{
     title: string;
     description: string;
@@ -37,17 +28,17 @@ interface ContentData {
 }
 
 export default function AdminPage() {
-  const [token, setToken] = useState('');
+  const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [content, setContent] = useState<ContentData | null>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
-  const API_URL = 'https://functions.poehali.dev/e602c064-6e4a-4626-a8ef-49031a158115';
+  const API_URL = 'https://functions.poehali.dev/95f23b17-7405-4134-963a-6de570deab1d';
 
   const handleLogin = async () => {
-    if (!token.trim()) {
-      setMessage('Введите токен');
+    if (!password.trim()) {
+      setMessage('Введите пароль');
       return;
     }
 
@@ -60,20 +51,21 @@ export default function AdminPage() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ action: 'login', token })
+        body: JSON.stringify({ action: 'get', password })
       });
 
       if (response.ok) {
         const data = await response.json();
         setContent(data);
         setIsLoggedIn(true);
-        localStorage.setItem('adminToken', token);
+        localStorage.setItem('adminPassword', password);
         setMessage('Успешный вход');
       } else {
-        setMessage('Неверный токен');
+        setMessage('Неверный пароль');
       }
     } catch (error) {
       setMessage('Ошибка подключения');
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -91,7 +83,7 @@ export default function AdminPage() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ action: 'save', token, content })
+        body: JSON.stringify({ action: 'save', password, content })
       });
 
       if (response.ok) {
@@ -102,6 +94,7 @@ export default function AdminPage() {
       }
     } catch (error) {
       setMessage('❌ Ошибка подключения');
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -109,15 +102,15 @@ export default function AdminPage() {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    setToken('');
+    setPassword('');
     setContent(null);
-    localStorage.removeItem('adminToken');
+    localStorage.removeItem('adminPassword');
   };
 
   useEffect(() => {
-    const savedToken = localStorage.getItem('adminToken');
-    if (savedToken) {
-      setToken(savedToken);
+    const savedPassword = localStorage.getItem('adminPassword');
+    if (savedPassword) {
+      setPassword(savedPassword);
     }
   }, []);
 
@@ -130,14 +123,14 @@ export default function AdminPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="token">Токен авторизации</Label>
+              <Label htmlFor="password">Пароль</Label>
               <Input
-                id="token"
+                id="password"
                 type="password"
-                value={token}
-                onChange={(e) => setToken(e.target.value)}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
-                placeholder="Введите токен"
+                placeholder="Введите пароль"
               />
             </div>
             {message && (
@@ -150,6 +143,9 @@ export default function AdminPage() {
             >
               {loading ? 'Вход...' : 'Войти'}
             </Button>
+            <p className="text-xs text-muted-foreground text-center mt-4">
+              Пароль по умолчанию: <strong>admin2026</strong>
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -288,10 +284,7 @@ export default function AdminPage() {
                 <Input
                   value={content.contact.phone}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      contact: { ...content.contact, phone: e.target.value }
-                    })
+                    setContent({ ...content, contact: { ...content.contact, phone: e.target.value } })
                   }
                 />
               </div>
@@ -300,10 +293,7 @@ export default function AdminPage() {
                 <Input
                   value={content.contact.email}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      contact: { ...content.contact, email: e.target.value }
-                    })
+                    setContent({ ...content, contact: { ...content.contact, email: e.target.value } })
                   }
                 />
               </div>
@@ -312,34 +302,21 @@ export default function AdminPage() {
                 <Input
                   value={content.contact.address}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      contact: { ...content.contact, address: e.target.value }
-                    })
+                    setContent({ ...content, contact: { ...content.contact, address: e.target.value } })
                   }
                 />
               </div>
               <div>
-                <Label>Часы работы</Label>
+                <Label>Режим работы</Label>
                 <Input
                   value={content.contact.workingHours}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      contact: { ...content.contact, workingHours: e.target.value }
-                    })
+                    setContent({ ...content, contact: { ...content.contact, workingHours: e.target.value } })
                   }
                 />
               </div>
             </CardContent>
           </Card>
-        </div>
-
-        <div className="mt-8 flex justify-center">
-          <Button onClick={handleSave} disabled={loading} size="lg">
-            <Icon name="Save" className="mr-2" size={20} />
-            {loading ? 'Сохранение...' : 'Сохранить все изменения'}
-          </Button>
         </div>
       </div>
     </div>

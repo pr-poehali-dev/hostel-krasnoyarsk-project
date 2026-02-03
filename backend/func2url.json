@@ -1,5 +1,5 @@
 {
+  "admin": "https://functions.poehali.dev/95f23b17-7405-4134-963a-6de570deab1d",
   "generate-qr": "https://functions.poehali.dev/6637b69c-b25e-447a-a7a3-eb20ae1c4af1",
-  "admin-content": "https://functions.poehali.dev/e602c064-6e4a-4626-a8ef-49031a158115",
   "send-booking": "https://functions.poehali.dev/53582130-3f6f-4a05-b821-2d8c7f324138"
 }
