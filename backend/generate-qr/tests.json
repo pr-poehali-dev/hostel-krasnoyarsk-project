@@ -1,0 +1,20 @@
+{
+  "tests": [
+    {
+      "name": "Generate QR code for URL",
+      "method": "POST",
+      "path": "/",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "url": "https://example.com"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "qr_code": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
