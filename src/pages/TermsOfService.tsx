@@ -54,18 +54,83 @@ const TermsOfService = () => {
           <section>
             <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">2. Предмет соглашения</h2>
             <p className="text-muted-foreground leading-relaxed mb-3">
-              Исполнитель обязуется предоставить Клиенту услуги временного размещения в хостеле, включающие:
+              По настоящему Соглашению Исполнитель обязуется предоставить Клиенту услуги временного размещения (проживания) 
+              в хостеле, расположенном по адресу: г. Красноярск, 2-я Красногорская улица, дом 3, а Клиент обязуется 
+              оплатить эти услуги и соблюдать правила проживания.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-3 font-semibold">
+              Услуги включают:
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4 mb-3">
+              <li>Предоставление спального места в номере выбранной категории (общий номер или отдельный номер)</li>
+              <li>Предоставление постельного белья и полотенец</li>
+              <li>Доступ к общим зонам хостела (кухня, ванная комната, душевая, зона отдыха, коридоры)</li>
+              <li>Пользование коммунальными услугами (электричество, вода, отопление, Wi-Fi)</li>
+              <li>Пользование кухонным оборудованием и посудой</li>
+              <li>Хранение личных вещей в отведенных местах</li>
+            </ul>
+            <p className="text-muted-foreground leading-relaxed mb-3 font-semibold">
+              Дополнительные услуги (оплачиваются отдельно):
             </p>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
-              <li>Предоставление спального места в номере выбранной категории</li>
-              <li>Доступ к общим зонам хостела (кухня, ванная комната, зона отдыха)</li>
-              <li>Пользование коммунальными услугами (электричество, вода, отопление, Wi-Fi)</li>
-              <li>Дополнительные услуги по запросу (питание, трансфер и др.) на платной основе</li>
+              <li>Питание (завтрак, обед, ужин)</li>
+              <li>Трансфер от/до вокзала, аэропорта</li>
+              <li>Стирка и глажка белья</li>
+              <li>Продление времени проживания (ранний заезд/поздний выезд)</li>
+              <li>Другие услуги по согласованию с Исполнителем</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">3. Бронирование и оплата</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">3. Порядок оказания услуг</h2>
+            <div className="space-y-3">
+              <div>
+                <h3 className="font-semibold mb-2">3.1. Порядок заключения договора</h3>
+                <p className="text-muted-foreground leading-relaxed mb-2">
+                  Договор на оказание услуг размещения считается заключенным с момента акцепта Клиентом настоящей публичной оферты 
+                  (отправка заявки, звонок, оплата или фактическое заселение).
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  После получения заявки Исполнитель в течение 24 часов связывается с Клиентом для подтверждения бронирования, 
+                  уточнения деталей и согласования условий проживания.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">3.2. Порядок предоставления услуг</h3>
+                <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
+                  <li>Клиент прибывает в хостел в согласованную дату и время</li>
+                  <li>При заселении Клиент предъявляет документ, удостоверяющий личность</li>
+                  <li>Исполнитель фиксирует данные документа в журнале регистрации (в соответствии с требованиями законодательства РФ)</li>
+                  <li>Клиент производит оплату услуг согласно действующим тарифам</li>
+                  <li>Исполнитель передает Клиенту ключи от номера (при отдельном номере) или предоставляет доступ к общему номеру</li>
+                  <li>Исполнитель информирует Клиента о правилах проживания и расположении общих зон</li>
+                  <li>Клиент размещается в номере и может пользоваться услугами хостела в соответствии с условиями Соглашения</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">3.3. Порядок выселения</h3>
+                <p className="text-muted-foreground leading-relaxed mb-2">
+                  В день выезда Клиент обязан освободить номер до 12:00 (расчетный час), сдать ключи (при наличии) и 
+                  пройти процедуру выселения с проверкой сохранности имущества.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  В случае выявления порчи или утраты имущества составляется акт с указанием размера ущерба. 
+                  Клиент обязан возместить ущерб до момента выезда либо в течение 3 рабочих дней после выезда.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">3.4. Приемка услуг</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Услуги считаются принятыми Клиентом и оказанными Исполнителем надлежащим образом, если в течение срока проживания 
+                  или в момент выезда Клиент не предъявил письменных претензий по качеству услуг. По требованию Клиента 
+                  Исполнитель предоставляет акт об оказании услуг.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">4. Бронирование и порядок расчетов</h2>
             <div className="space-y-3">
               <div>
                 <h3 className="font-semibold mb-2">3.1. Порядок бронирования</h3>
@@ -100,7 +165,56 @@ const TermsOfService = () => {
           </section>
 
           <section>
-            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">4. Заселение и проживание</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">5. Права и обязанности сторон</h2>
+            <div className="space-y-3">
+              <div>
+                <h3 className="font-semibold mb-2">5.1. Исполнитель обязан:</h3>
+                <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
+                  <li>Предоставить Клиенту услуги в соответствии с условиями настоящего Соглашения</li>
+                  <li>Обеспечить соответствие номера и услуг заявленной категории и описанию на сайте</li>
+                  <li>Обеспечить чистоту и порядок в общих зонах хостела</li>
+                  <li>Обеспечить исправность коммунальных услуг и оборудования</li>
+                  <li>Принимать меры по обеспечению безопасности Клиентов и их имущества</li>
+                  <li>Не разглашать персональные данные Клиента третьим лицам без его согласия</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">5.2. Исполнитель имеет право:</h3>
+                <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
+                  <li>Требовать от Клиента соблюдения правил проживания</li>
+                  <li>Требовать возмещения ущерба, причиненного имуществу хостела</li>
+                  <li>Отказать в заселении при отсутствии документов, удостоверяющих личность</li>
+                  <li>Досрочно расторгнуть договор при грубом нарушении Клиентом правил проживания</li>
+                  <li>Изменять цены на услуги с уведомлением на сайте</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">5.3. Клиент обязан:</h3>
+                <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
+                  <li>Соблюдать правила проживания, установленные в разделе 6 настоящего Соглашения</li>
+                  <li>Своевременно оплатить услуги размещения</li>
+                  <li>Бережно относиться к имуществу хостела</li>
+                  <li>Возместить ущерб в случае порчи или утраты имущества</li>
+                  <li>Предъявить документ, удостоверяющий личность, при заселении</li>
+                  <li>Соблюдать тишину в установленное время</li>
+                  <li>Освободить номер в расчетный час</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">5.4. Клиент имеет право:</h3>
+                <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
+                  <li>Получать услуги надлежащего качества в соответствии с условиями Соглашения</li>
+                  <li>Требовать устранения недостатков в оказании услуг</li>
+                  <li>Расторгнуть договор досрочно с соблюдением порядка, установленного разделом 7</li>
+                  <li>Получить документы, подтверждающие оплату услуг</li>
+                  <li>Пользоваться всеми услугами, включенными в стоимость проживания</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">6. Правила проживания</h2>
             <div className="space-y-3">
               <div>
                 <h3 className="font-semibold mb-2">4.1. Время заселения и выселения</h3>
@@ -131,7 +245,7 @@ const TermsOfService = () => {
           </section>
 
           <section>
-            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">5. Ответственность сторон</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">7. Ответственность сторон</h2>
             <div className="space-y-3">
               <div>
                 <h3 className="font-semibold mb-2">5.1. Ответственность Клиента</h3>
@@ -151,7 +265,7 @@ const TermsOfService = () => {
           </section>
 
           <section>
-            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">6. Возврат денежных средств и порядок расторжения договора</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">8. Возврат денежных средств и порядок расторжения договора</h2>
             <div className="space-y-3">
               <div>
                 <h3 className="font-semibold mb-2">6.1. Основания для возврата</h3>
@@ -185,7 +299,7 @@ const TermsOfService = () => {
           </section>
 
           <section>
-            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">7. Форс-мажор</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">9. Форс-мажор</h2>
             <p className="text-muted-foreground leading-relaxed">
               Стороны освобождаются от ответственности за частичное или полное неисполнение обязательств по настоящему 
               Соглашению, если это неисполнение явилось следствием обстоятельств непреодолимой силы (пожар, наводнение, 
@@ -194,7 +308,7 @@ const TermsOfService = () => {
           </section>
 
           <section>
-            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">8. Разрешение споров</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">10. Разрешение споров</h2>
             <p className="text-muted-foreground leading-relaxed">
               Все споры и разногласия решаются путем переговоров. В случае недостижения согласия спор передается 
               на рассмотрение в суд по месту нахождения Исполнителя в соответствии с законодательством РФ.
@@ -202,7 +316,7 @@ const TermsOfService = () => {
           </section>
 
           <section>
-            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">9. Персональные данные</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">11. Персональные данные</h2>
             <p className="text-muted-foreground leading-relaxed mb-3">
               Обработка персональных данных Клиента осуществляется в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ 
               «О персональных данных» и Политикой конфиденциальности, размещенной на сайте.
@@ -222,7 +336,7 @@ const TermsOfService = () => {
           </section>
 
           <section>
-            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">10. Заключительные положения</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">12. Заключительные положения</h2>
             <p className="text-muted-foreground leading-relaxed mb-3">
               Настоящее Соглашение вступает в силу с момента его акцепта Клиентом и действует до полного исполнения 
               сторонами своих обязательств.
@@ -243,7 +357,7 @@ const TermsOfService = () => {
           </section>
 
           <section>
-            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">11. Реквизиты и контактная информация</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">13. Реквизиты и контактная информация</h2>
             <div className="bg-secondary/20 p-4 sm:p-6 rounded-lg">
               <p className="font-semibold mb-2">ИП Горякин Александр Александрович</p>
               <p className="text-muted-foreground">ИНН: 890405283300</p>
