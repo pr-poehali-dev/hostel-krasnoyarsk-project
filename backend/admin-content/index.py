@@ -13,17 +13,13 @@ def handler(event: dict, context) -> dict:
             'headers': {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, X-Admin-Token'
+                'Access-Control-Allow-Headers': 'Content-Type'
             },
             'body': ''
         }
     
-    headers = event.get('headers', {})
-    admin_token = ''
-    for key, value in headers.items():
-        if key.lower() == 'x-admin-token':
-            admin_token = value
-            break
+    query_params = event.get('queryStringParameters', {}) or {}
+    admin_token = query_params.get('token', '')
     
     expected_token = os.environ.get('ADMIN_TOKEN', '')
     

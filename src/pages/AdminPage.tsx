@@ -55,11 +55,7 @@ export default function AdminPage() {
     setMessage('');
 
     try {
-      const response = await fetch(API_URL, {
-        headers: {
-          'X-Admin-Token': token
-        }
-      });
+      const response = await fetch(`${API_URL}?token=${encodeURIComponent(token)}`);
 
       if (response.ok) {
         const data = await response.json();
@@ -84,11 +80,10 @@ export default function AdminPage() {
     setMessage('');
 
     try {
-      const response = await fetch(API_URL, {
+      const response = await fetch(`${API_URL}?token=${encodeURIComponent(token)}`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'X-Admin-Token': token
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(content)
       });
