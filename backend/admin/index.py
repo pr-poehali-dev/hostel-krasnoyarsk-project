@@ -4,7 +4,7 @@ import boto3
 import base64
 from datetime import datetime
 
-ADMIN_PASSWORD = "admin2026"
+ADMIN_PASSWORD = "AVostok2026!"
 
 def handler(event: dict, context) -> dict:
     '''Админ-панель для управления контентом хостела'''

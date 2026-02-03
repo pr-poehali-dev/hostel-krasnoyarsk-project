@@ -199,7 +199,7 @@ export default function AdminPage() {
               {loading ? 'Вход...' : 'Войти'}
             </Button>
             <p className="text-xs text-muted-foreground text-center mt-4">
-              Используйте пароль: <strong>admin2026</strong>
+              Введите пароль для доступа
             </p>
           </CardContent>
         </Card>
