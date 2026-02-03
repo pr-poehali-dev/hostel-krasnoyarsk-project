@@ -21,13 +21,20 @@ def handler(event: dict, context) -> dict:
     admin_token = ''
     body_data = {}
     
+    raw_body = event.get('body', '{}')
+    print(f"DEBUG: Method: {method}")
+    print(f"DEBUG: Raw body: {raw_body}")
+    
     if method == 'POST':
-        body_data = json.loads(event.get('body', '{}'))
-        admin_token = body_data.get('token', '')
+        try:
+            body_data = json.loads(raw_body)
+            print(f"DEBUG: Parsed body_data: {body_data}")
+            admin_token = body_data.get('token', '')
+        except Exception as e:
+            print(f"DEBUG: Error parsing body: {e}")
     
     expected_token = os.environ.get('ADMIN_TOKEN', '')
     
-    print(f"DEBUG: Method: {method}")
     print(f"DEBUG: Received token: '{admin_token}'")
     print(f"DEBUG: Expected token from env: '{expected_token}'")
     print(f"DEBUG: Token match: {admin_token == expected_token}")
