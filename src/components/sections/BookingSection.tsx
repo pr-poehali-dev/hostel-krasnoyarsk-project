@@ -1,14 +1,17 @@
 import { useState, FormEvent } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { Checkbox } from '@/components/ui/checkbox';
 import Icon from '@/components/ui/icon';
 
 const BookingSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
 
   const handleBookingSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -96,12 +99,31 @@ const BookingSection = () => {
                     <Label htmlFor="message">Дополнительная информация</Label>
                     <Textarea id="message" name="message" placeholder="Особые пожелания или вопросы" rows={4} />
                   </div>
+                  <div className="flex items-start gap-3 pt-2">
+                    <Checkbox 
+                      id="terms" 
+                      checked={agreedToTerms} 
+                      onCheckedChange={(checked) => setAgreedToTerms(checked as boolean)}
+                      required
+                    />
+                    <label htmlFor="terms" className="text-xs sm:text-sm text-muted-foreground leading-relaxed cursor-pointer">
+                      Я согласен с{' '}
+                      <Link to="/terms" className="text-primary hover:underline" target="_blank">
+                        пользовательским соглашением
+                      </Link>
+                      {' '}и{' '}
+                      <Link to="/privacy" className="text-primary hover:underline" target="_blank">
+                        политикой конфиденциальности
+                      </Link>
+                      , даю согласие на обработку персональных данных *
+                    </label>
+                  </div>
                   {submitMessage && (
                     <div className={`p-3 sm:p-4 rounded-md text-center text-sm sm:text-base ${submitMessage.includes('✅') ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
                       {submitMessage}
                     </div>
                   )}
-                  <Button type="submit" size="lg" className="w-full text-base sm:text-lg" disabled={isSubmitting}>
+                  <Button type="submit" size="lg" className="w-full text-base sm:text-lg" disabled={isSubmitting || !agreedToTerms}>
                     {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
                   </Button>
                 </form>
@@ -166,8 +188,24 @@ const BookingSection = () => {
       </section>
 
       <footer className="bg-foreground text-background py-6 sm:py-8">
-        <div className="container mx-auto px-4 sm:px-6 text-center">
-          <p className="text-xs sm:text-sm">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-4">
+            <p className="text-xs sm:text-sm mb-3">
+              ИП Горякин Александр Александрович
+            </p>
+            <p className="text-xs text-background/80">
+              ИНН: 890405283300 | ОГРНИП: 325723200125202
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-4 text-xs sm:text-sm">
+            <Link to="/privacy" className="hover:text-background/80 transition-colors">
+              Политика конфиденциальности
+            </Link>
+            <Link to="/terms" className="hover:text-background/80 transition-colors">
+              Пользовательское соглашение
+            </Link>
+          </div>
+          <p className="text-center text-xs sm:text-sm">
             © 2024 Хостел в г. Красноярск. Все права защищены.
           </p>
         </div>
