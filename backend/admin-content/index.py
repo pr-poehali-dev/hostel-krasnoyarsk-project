@@ -27,6 +27,10 @@ def handler(event: dict, context) -> dict:
     
     expected_token = os.environ.get('ADMIN_TOKEN', '')
     
+    print(f"DEBUG: Received token: '{admin_token}'")
+    print(f"DEBUG: Expected token from env: '{expected_token}'")
+    print(f"DEBUG: Token match: {admin_token == expected_token}")
+    
     if not admin_token or admin_token != expected_token:
         return {
             'statusCode': 401,
