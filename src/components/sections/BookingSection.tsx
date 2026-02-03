@@ -198,6 +198,9 @@ const BookingSection = () => {
             </p>
           </div>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-4 text-xs sm:text-sm">
+            <Link to="/contact" className="hover:text-background/80 transition-colors">
+              Обратная связь
+            </Link>
             <Link to="/privacy" className="hover:text-background/80 transition-colors">
               Политика конфиденциальности
             </Link>
