@@ -201,6 +201,9 @@ const BookingSection = () => {
             <Link to="/contact" className="hover:text-background/80 transition-colors">
               Обратная связь
             </Link>
+            <Link to="/rules" className="hover:text-background/80 transition-colors">
+              Правила проживания
+            </Link>
             <Link to="/privacy" className="hover:text-background/80 transition-colors">
               Политика конфиденциальности
             </Link>
