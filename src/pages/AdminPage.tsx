@@ -46,6 +46,7 @@ export default function AdminPage() {
     setMessage('');
 
     try {
+      console.log('Отправка запроса на:', API_URL);
       const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
@@ -54,18 +55,23 @@ export default function AdminPage() {
         body: JSON.stringify({ action: 'get', password })
       });
 
+      console.log('Статус ответа:', response.status);
+
       if (response.ok) {
         const data = await response.json();
+        console.log('Получены данные:', data);
         setContent(data);
         setIsLoggedIn(true);
         localStorage.setItem('adminPassword', password);
         setMessage('Успешный вход');
       } else {
-        setMessage('Неверный пароль');
+        const errorText = await response.text();
+        console.error('Ошибка от сервера:', errorText);
+        setMessage(`Неверный пароль (статус: ${response.status})`);
       }
     } catch (error) {
-      setMessage('Ошибка подключения');
-      console.error(error);
+      console.error('Ошибка fetch:', error);
+      setMessage(`Ошибка подключения: ${error instanceof Error ? error.message : 'Неизвестная ошибка'}`);
     } finally {
       setLoading(false);
     }
