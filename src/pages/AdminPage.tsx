@@ -172,6 +172,10 @@ export default function AdminPage() {
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold">Админ-панель</h1>
           <div className="flex gap-4">
+            <Button variant="outline" onClick={() => window.open('/qr', '_blank')}>
+              <Icon name="QrCode" className="mr-2" size={20} />
+              QR-код
+            </Button>
             <Button onClick={handleSave} disabled={loading}>
               <Icon name="Save" className="mr-2" size={20} />
               {loading ? 'Сохранение...' : 'Сохранить'}
