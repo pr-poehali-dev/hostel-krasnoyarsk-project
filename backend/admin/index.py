@@ -1,6 +1,8 @@
 import json
 import os
 import boto3
+import base64
+from datetime import datetime
 
 ADMIN_PASSWORD = "admin2026"
 
@@ -137,6 +139,66 @@ def handler(event: dict, context) -> dict:
             'body': json.dumps({'success': True}),
             'isBase64Encoded': False
         }
+    
+    elif action == 'upload_image':
+        image_data = body.get('imageData', '')
+        image_name = body.get('imageName', 'image.jpg')
+        
+        if not image_data:
+            return {
+                'statusCode': 400,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'body': json.dumps({'error': 'Нет данных изображения'}),
+                'isBase64Encoded': False
+            }
+        
+        try:
+            if ',' in image_data:
+                image_data = image_data.split(',')[1]
+            
+            image_bytes = base64.b64decode(image_data)
+            
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            extension = image_name.split('.')[-1] if '.' in image_name else 'jpg'
+            s3_key = f'hostel/rooms/{timestamp}.{extension}'
+            
+            content_type = 'image/jpeg'
+            if extension.lower() == 'png':
+                content_type = 'image/png'
+            elif extension.lower() == 'webp':
+                content_type = 'image/webp'
+            
+            s3.put_object(
+                Bucket='files',
+                Key=s3_key,
+                Body=image_bytes,
+                ContentType=content_type
+            )
+            
+            cdn_url = f"https://cdn.poehali.dev/projects/{os.environ['AWS_ACCESS_KEY_ID']}/bucket/{s3_key}"
+            
+            return {
+                'statusCode': 200,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'body': json.dumps({'url': cdn_url}),
+                'isBase64Encoded': False
+            }
+        except Exception as e:
+            return {
+                'statusCode': 500,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'body': json.dumps({'error': f'Ошибка загрузки: {str(e)}'}),
+                'isBase64Encoded': False
+            }
     
     return {
         'statusCode': 400,

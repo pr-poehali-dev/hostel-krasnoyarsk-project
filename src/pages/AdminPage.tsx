@@ -33,6 +33,7 @@ export default function AdminPage() {
   const [content, setContent] = useState<ContentData | null>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const [uploadingImage, setUploadingImage] = useState<number | null>(null);
 
   const API_URL = 'https://functions.poehali.dev/95f23b17-7405-4134-963a-6de570deab1d';
 
@@ -103,6 +104,54 @@ export default function AdminPage() {
       console.error(error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleImageUpload = async (index: number, file: File) => {
+    if (!file || !file.type.startsWith('image/')) {
+      setMessage('❌ Пожалуйста, выберите изображение');
+      return;
+    }
+
+    setUploadingImage(index);
+    
+    try {
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        const base64 = e.target?.result as string;
+        
+        const response = await fetch(API_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            action: 'upload_image',
+            password,
+            imageData: base64,
+            imageName: file.name
+          })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.url) {
+          const newRooms = [...content!.rooms];
+          newRooms[index].image = data.url;
+          setContent({ ...content!, rooms: newRooms });
+          setMessage('✅ Фото загружено');
+          setTimeout(() => setMessage(''), 3000);
+        } else {
+          setMessage('❌ Ошибка загрузки фото');
+        }
+        setUploadingImage(null);
+      };
+      
+      reader.readAsDataURL(file);
+    } catch (error) {
+      setMessage('❌ Ошибка загрузки');
+      console.error(error);
+      setUploadingImage(null);
     }
   };
 
@@ -265,15 +314,39 @@ export default function AdminPage() {
                     />
                   </div>
                   <div>
-                    <Label>URL изображения</Label>
-                    <Input
-                      value={room.image}
-                      onChange={(e) => {
-                        const newRooms = [...content.rooms];
-                        newRooms[index].image = e.target.value;
-                        setContent({ ...content, rooms: newRooms });
-                      }}
-                    />
+                    <Label>Изображение номера</Label>
+                    <div className="space-y-2">
+                      {room.image && (
+                        <img src={room.image} alt={room.title} className="w-full h-40 object-cover rounded-lg" />
+                      )}
+                      <div className="flex gap-2">
+                        <Input
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) handleImageUpload(index, file);
+                          }}
+                          disabled={uploadingImage === index}
+                          className="cursor-pointer"
+                        />
+                        {uploadingImage === index && (
+                          <span className="text-sm text-muted-foreground flex items-center">
+                            <Icon name="Loader2" className="animate-spin mr-2" size={16} />
+                            Загрузка...
+                          </span>
+                        )}
+                      </div>
+                      <Input
+                        placeholder="Или вставьте URL"
+                        value={room.image}
+                        onChange={(e) => {
+                          const newRooms = [...content.rooms];
+                          newRooms[index].image = e.target.value;
+                          setContent({ ...content, rooms: newRooms });
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
               ))}
