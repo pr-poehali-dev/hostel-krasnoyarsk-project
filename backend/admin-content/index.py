@@ -25,7 +25,7 @@ def handler(event: dict, context) -> dict:
             admin_token = value
             break
     
-    expected_token = os.environ.get('ADMIN_TOKEN', 'demo-admin-token-123')
+    expected_token = os.environ.get('ADMIN_TOKEN', '')
     
     if not admin_token or admin_token != expected_token:
         return {
