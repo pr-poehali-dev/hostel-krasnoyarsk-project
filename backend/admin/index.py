@@ -9,6 +9,10 @@ def handler(event: dict, context) -> dict:
     
     method = event.get('httpMethod', 'GET')
     
+    print(f"=== REQUEST ===")
+    print(f"Method: {method}")
+    print(f"Body: {event.get('body', 'EMPTY')}")
+    
     if method == 'OPTIONS':
         return {
             'statusCode': 200,
