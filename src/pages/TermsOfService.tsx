@@ -364,7 +364,7 @@ const TermsOfService = () => {
               <p className="text-muted-foreground">ОГРНИП: 325723200125202</p>
               <p className="text-muted-foreground">Адрес: г. Красноярск, 2-я Красногорская улица, дом 3</p>
               <p className="text-muted-foreground">Email: <a href="mailto:hostel.bl124@mail.ru" className="text-primary hover:underline">hostel.bl124@mail.ru</a></p>
-              <p className="text-muted-foreground">Телефон: <a href="tel:+79832814308" className="text-primary hover:underline">+7 (983) 281-43-08</a></p>
+              <p className="text-muted-foreground">Телефон: <a href="tel:+79039209988" className="text-primary hover:underline">+7 (903) 920-99-88</a></p>
             </div>
           </section>
 

@@ -153,8 +153,8 @@ const BookingSection = () => {
                   <Icon name="Phone" className="text-primary mt-1" size={20} />
                   <div>
                     <h4 className="font-semibold mb-1 text-sm sm:text-base">Телефон для бронирования</h4>
-                    <a href="tel:+79832814308" className="text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors">
-                      +7 (983) 281-43-08
+                    <a href="tel:+79039209988" className="text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors">
+                      +7 (903) 920-99-88
                     </a>
                   </div>
                 </div>
