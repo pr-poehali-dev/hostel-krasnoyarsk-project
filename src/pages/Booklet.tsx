@@ -72,12 +72,12 @@ const Booklet = () => {
         <div className="bpage">
 
           {/* ШАПКА — фото как обычный img, текст поверх */}
-          <div style={{ position: 'relative', height: '88mm', overflow: 'hidden', flexShrink: 0 }}>
+          <div style={{ position: 'relative', height: '80mm', overflow: 'hidden', flexShrink: 0 }}>
             <img
               src="https://cdn.poehali.dev/files/6aebe38d-8d22-4cfc-8558-fd863e1c9eef.jpg"
               alt="Хостел на Красногорской"
               style={{
-                width: '100%', height: '88mm',
+                width: '100%', height: '80mm',
                 objectFit: 'cover', display: 'block',
                 printColorAdjust: 'exact',
               }}
@@ -120,7 +120,7 @@ const Booklet = () => {
           </div>
 
           {/* ТЕЛО СТРАНИЦЫ 1 */}
-          <div style={{ padding: '5mm 10mm 0' }}>
+          <div style={{ padding: '5mm 10mm 12mm' }}>
 
             {/* Заголовок "Наши номера" */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '3mm' }}>
@@ -136,7 +136,7 @@ const Booklet = () => {
                 { img: 'https://cdn.poehali.dev/files/07638c2d-3ec1-4753-9d1c-10ab0efcaffd.jpg', title: '14-местный' },
               ].map(room => (
                 <div key={room.title} style={{ border: '1px solid #e2d9ce', borderRadius: 6, overflow: 'hidden', background: '#faf8f5' }}>
-                  <img src={room.img} alt={room.title} style={{ width: '100%', height: '38mm', objectFit: 'cover', display: 'block' }} />
+                  <img src={room.img} alt={room.title} style={{ width: '100%', height: '30mm', objectFit: 'cover', display: 'block' }} />
                   <div style={{ padding: '2.5mm 3.5mm' }}>
                     <div className="bhead" style={{ fontSize: 11, fontWeight: 600, color: '#1a1a2e', marginBottom: '2mm' }}>{room.title}</div>
                     {['Санузел и душ в номере', 'Постельное бельё и полотенце'].map(f => (
@@ -161,7 +161,7 @@ const Booklet = () => {
                 'https://cdn.poehali.dev/files/f438dff6-710a-447a-8276-b522408b2a6d.jpg',
                 'https://cdn.poehali.dev/files/3622d273-d9fb-4caa-a8c5-a21dc52fbb4e.jpg',
               ].map((src, i) => (
-                <img key={i} src={src} alt="" style={{ width: '100%', height: '38mm', objectFit: 'cover', borderRadius: 4, display: 'block' }} />
+                <img key={i} src={src} alt="" style={{ width: '100%', height: '32mm', objectFit: 'cover', borderRadius: 4, display: 'block' }} />
               ))}
             </div>
           </div>
