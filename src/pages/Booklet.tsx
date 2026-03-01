@@ -74,7 +74,7 @@ const Booklet = () => {
           {/* ШАПКА — фото как обычный img, текст поверх */}
           <div style={{ position: 'relative', height: '88mm', overflow: 'hidden', flexShrink: 0 }}>
             <img
-              src="https://cdn.poehali.dev/files/eb8724d6-68e6-414c-864c-b75035404a0a.jpg"
+              src="https://cdn.poehali.dev/files/6aebe38d-8d22-4cfc-8558-fd863e1c9eef.jpg"
               alt="Хостел на Красногорской"
               style={{
                 width: '100%', height: '88mm',
