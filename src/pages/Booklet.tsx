@@ -72,12 +72,12 @@ const Booklet = () => {
         <div className="bpage">
 
           {/* ШАПКА — фото как обычный img, текст поверх */}
-          <div style={{ position: 'relative', height: '118mm', overflow: 'hidden', flexShrink: 0 }}>
+          <div style={{ position: 'relative', height: '88mm', overflow: 'hidden', flexShrink: 0 }}>
             <img
               src="https://cdn.poehali.dev/files/eb8724d6-68e6-414c-864c-b75035404a0a.jpg"
               alt="Хостел на Красногорской"
               style={{
-                width: '100%', height: '118mm',
+                width: '100%', height: '88mm',
                 objectFit: 'cover', display: 'block',
                 printColorAdjust: 'exact',
               }}
@@ -120,40 +120,31 @@ const Booklet = () => {
           </div>
 
           {/* ТЕЛО СТРАНИЦЫ 1 */}
-          <div style={{ padding: '6mm 10mm 0' }}>
+          <div style={{ padding: '5mm 10mm 0' }}>
 
             {/* Заголовок "Наши номера" */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '4mm' }}>
-              <div style={{ width: 3, height: 20, background: '#B8860B', borderRadius: 2, flexShrink: 0 }} />
-              <div className="bhead" style={{ fontSize: 16, fontWeight: 600, color: '#1a1a2e' }}>Наши номера</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '3mm' }}>
+              <div style={{ width: 3, height: 18, background: '#B8860B', borderRadius: 2, flexShrink: 0 }} />
+              <div className="bhead" style={{ fontSize: 15, fontWeight: 600, color: '#1a1a2e' }}>Наши номера</div>
             </div>
 
             {/* 3 номера */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '4mm', marginBottom: '5mm' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '4mm', marginBottom: '4mm' }}>
               {[
-                { img: 'https://cdn.poehali.dev/files/a2fe496b-1941-4729-966b-81ce98db8c57.jpg', title: '4-местный', desc: 'Уютный номер для небольшой группы' },
-                { img: 'https://cdn.poehali.dev/files/282cb7d1-99f4-4580-af2c-6b1d10169356.jpg', title: '8-местный', desc: 'Просторный номер для рабочих бригад' },
-                { img: 'https://cdn.poehali.dev/files/07638c2d-3ec1-4753-9d1c-10ab0efcaffd.jpg', title: '14-местный', desc: 'Большой номер для крупных групп' },
+                { img: 'https://cdn.poehali.dev/files/a2fe496b-1941-4729-966b-81ce98db8c57.jpg', title: '4-местный' },
+                { img: 'https://cdn.poehali.dev/files/282cb7d1-99f4-4580-af2c-6b1d10169356.jpg', title: '8-местный' },
+                { img: 'https://cdn.poehali.dev/files/07638c2d-3ec1-4753-9d1c-10ab0efcaffd.jpg', title: '14-местный' },
               ].map(room => (
                 <div key={room.title} style={{ border: '1px solid #e2d9ce', borderRadius: 6, overflow: 'hidden', background: '#faf8f5' }}>
-                  <img src={room.img} alt={room.title} style={{ width: '100%', height: '28mm', objectFit: 'cover', display: 'block' }} />
-                  <div style={{ padding: '3mm 3.5mm' }}>
-                    <div className="bhead" style={{ fontSize: 11, fontWeight: 600, color: '#1a1a2e', marginBottom: '1.5mm' }}>{room.title}</div>
-                    <div style={{ fontSize: 7.5, color: '#666', marginBottom: '2mm', lineHeight: 1.4 }}>{room.desc}</div>
+                  <img src={room.img} alt={room.title} style={{ width: '100%', height: '38mm', objectFit: 'cover', display: 'block' }} />
+                  <div style={{ padding: '2.5mm 3.5mm' }}>
+                    <div className="bhead" style={{ fontSize: 11, fontWeight: 600, color: '#1a1a2e', marginBottom: '2mm' }}>{room.title}</div>
                     {['Санузел и душ в номере', 'Постельное бельё и полотенце'].map(f => (
-                      <div key={f} style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 7, color: '#444', marginBottom: '1mm' }}>
+                      <div key={f} style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 7.5, color: '#444', marginBottom: '1.5mm' }}>
                         <div style={{ width: 4, height: 4, borderRadius: '50%', background: '#B8860B', flexShrink: 0, printColorAdjust: 'exact' }} />
                         {f}
                       </div>
                     ))}
-                    <div style={{
-                      marginTop: '2.5mm', padding: '1.5mm 3mm',
-                      background: '#1a1a2e', color: '#B8860B',
-                      borderRadius: 4, textAlign: 'center', fontSize: 8.5, fontWeight: 700,
-                      printColorAdjust: 'exact',
-                    }}>
-                      900 ₽ / место / сутки
-                    </div>
                   </div>
                 </div>
               ))}
@@ -161,16 +152,16 @@ const Booklet = () => {
 
             {/* Галерея */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '3mm' }}>
-              <div style={{ width: 3, height: 20, background: '#B8860B', borderRadius: 2, flexShrink: 0 }} />
-              <div className="bhead" style={{ fontSize: 16, fontWeight: 600, color: '#1a1a2e' }}>Атмосфера</div>
+              <div style={{ width: 3, height: 18, background: '#B8860B', borderRadius: 2, flexShrink: 0 }} />
+              <div className="bhead" style={{ fontSize: 15, fontWeight: 600, color: '#1a1a2e' }}>Атмосфера</div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '3mm' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '4mm' }}>
               {[
                 'https://cdn.poehali.dev/files/0ad0e3f9-3292-4355-8e4a-a5ad41a5459d.jpg',
                 'https://cdn.poehali.dev/files/f438dff6-710a-447a-8276-b522408b2a6d.jpg',
                 'https://cdn.poehali.dev/files/3622d273-d9fb-4caa-a8c5-a21dc52fbb4e.jpg',
               ].map((src, i) => (
-                <img key={i} src={src} alt="" style={{ width: '100%', height: '22mm', objectFit: 'cover', borderRadius: 4, display: 'block' }} />
+                <img key={i} src={src} alt="" style={{ width: '100%', height: '38mm', objectFit: 'cover', borderRadius: 4, display: 'block' }} />
               ))}
             </div>
           </div>
