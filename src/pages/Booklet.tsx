@@ -69,7 +69,7 @@ const Booklet = () => {
         {/* ════════════════════════════════════════
             СТРАНИЦА 1
         ════════════════════════════════════════ */}
-        <div className="bpage">
+        <div className="bpage" style={{ display: 'flex', flexDirection: 'column' }}>
 
           {/* ШАПКА — фото как обычный img, текст поверх */}
           <div style={{ position: 'relative', height: '80mm', overflow: 'hidden', flexShrink: 0 }}>
@@ -120,7 +120,7 @@ const Booklet = () => {
           </div>
 
           {/* ТЕЛО СТРАНИЦЫ 1 */}
-          <div style={{ padding: '5mm 10mm 12mm' }}>
+          <div style={{ padding: '4mm 10mm 0', flex: 1, display: 'flex', flexDirection: 'column' }}>
 
             {/* Заголовок "Наши номера" */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '3mm' }}>
@@ -151,11 +151,11 @@ const Booklet = () => {
             </div>
 
             {/* Галерея */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '3mm' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '3mm', marginTop: '4mm' }}>
               <div style={{ width: 3, height: 18, background: '#B8860B', borderRadius: 2, flexShrink: 0 }} />
               <div className="bhead" style={{ fontSize: 15, fontWeight: 600, color: '#1a1a2e' }}>Атмосфера</div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '4mm' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '4mm', marginBottom: '4mm' }}>
               {[
                 'https://cdn.poehali.dev/files/0ad0e3f9-3292-4355-8e4a-a5ad41a5459d.jpg',
                 'https://cdn.poehali.dev/files/f438dff6-710a-447a-8276-b522408b2a6d.jpg',
@@ -168,9 +168,9 @@ const Booklet = () => {
 
           {/* Футер стр.1 */}
           <div style={{
-            position: 'absolute', bottom: 0, left: 0, right: 0,
-            background: '#1a1a2e', padding: '3.5mm 10mm',
+            background: '#1a1a2e', padding: '3mm 10mm',
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            flexShrink: 0,
             printColorAdjust: 'exact',
           }}>
             <div className="bhead" style={{ color: '#B8860B', fontSize: 11, fontWeight: 700 }}>Хостел на Красногорской</div>
