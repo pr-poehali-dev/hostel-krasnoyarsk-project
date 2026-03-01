@@ -1,156 +1,156 @@
-import { useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 
 const Booklet = () => {
-  const bookletRef = useRef<HTMLDivElement>(null);
-
-  const handlePrint = () => {
-    window.print();
-  };
+  const handlePrint = () => window.print();
 
   return (
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
-        @media print {
-          .no-print { display: none !important; }
-          body { margin: 0; padding: 0; background: white; }
-          .booklet-wrap { box-shadow: none !important; }
-          @page { margin: 0; size: A4; }
-        }
+        * { box-sizing: border-box; }
 
-        .booklet-font { font-family: 'Inter', sans-serif; }
-        .booklet-heading { font-family: 'Playfair Display', serif; }
+        .bfont { font-family: 'Inter', sans-serif; }
+        .bhead { font-family: 'Playfair Display', serif; }
 
-        .booklet-page {
+        .bpage {
           width: 210mm;
-          min-height: 297mm;
+          height: 297mm;
           background: white;
-          position: relative;
           overflow: hidden;
+          position: relative;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
         }
 
-        .gold { color: #B8860B; }
-        .gold-bg { background-color: #B8860B; }
-        .gold-border { border-color: #B8860B; }
-        .dark-bg { background-color: #1a1a2e; }
-        .warm-bg { background-color: #faf8f5; }
-        .cream { background-color: #f9f4ed; }
+        @media screen {
+          .print-root {
+            background: #d6d1ca;
+            min-height: 100vh;
+            padding: 32px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+          }
+          .bpage { box-shadow: 0 8px 40px rgba(0,0,0,0.18); }
+        }
+
+        @media print {
+          html, body { margin: 0; padding: 0; background: white; }
+          .no-print { display: none !important; }
+          .print-root { padding: 0; gap: 0; background: white; display: block; }
+          .bpage {
+            width: 210mm;
+            height: 297mm;
+            page-break-after: always;
+            box-shadow: none;
+            print-color-adjust: exact;
+            -webkit-print-color-adjust: exact;
+          }
+          @page { margin: 0; size: A4 portrait; }
+        }
       `}</style>
 
-      <div className="no-print fixed top-4 right-4 z-50 flex gap-2">
-        <Button onClick={handlePrint} className="shadow-lg" size="lg">
+      <div className="no-print" style={{ position: 'fixed', top: 16, right: 16, zIndex: 100, display: 'flex', gap: 8 }}>
+        <Button onClick={handlePrint} size="lg" style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.2)' }}>
           <Icon name="Printer" size={18} className="mr-2" />
-          Распечатать / Сохранить PDF
+          Сохранить PDF / Печать
         </Button>
-        <Button variant="outline" onClick={() => window.history.back()} className="shadow-lg bg-white" size="lg">
+        <Button variant="outline" onClick={() => window.history.back()} size="lg" style={{ background: 'white' }}>
           <Icon name="ArrowLeft" size={18} className="mr-2" />
           Назад
         </Button>
       </div>
 
-      <div className="booklet-font min-h-screen py-8 flex flex-col items-center gap-8"
-           style={{ background: '#e8e4de' }}>
+      <div className="print-root bfont">
 
-        {/* === СТРАНИЦА 1: ОБЛОЖКА + НОМЕРА === */}
-        <div ref={bookletRef} className="booklet-page booklet-wrap shadow-2xl" style={{ background: 'white' }}>
+        {/* ════════════════════════════════════════
+            СТРАНИЦА 1
+        ════════════════════════════════════════ */}
+        <div className="bpage">
 
-          {/* ОБЛОЖКА */}
-          <div className="relative" style={{ height: '140mm' }}>
+          {/* ШАПКА — фото как обычный img, текст поверх */}
+          <div style={{ position: 'relative', height: '118mm', overflow: 'hidden', flexShrink: 0 }}>
             <img
               src="https://cdn.poehali.dev/files/eb8724d6-68e6-414c-864c-b75035404a0a.jpg"
-              alt="Хостел"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              alt="Хостел на Красногорской"
+              style={{
+                width: '100%', height: '118mm',
+                objectFit: 'cover', display: 'block',
+                printColorAdjust: 'exact',
+              }}
             />
+            {/* Градиент-оверлей */}
             <div style={{
               position: 'absolute', inset: 0,
-              background: 'linear-gradient(to bottom, rgba(26,26,46,0.3) 0%, rgba(26,26,46,0.85) 100%)'
+              background: 'linear-gradient(180deg, rgba(10,10,30,0.25) 0%, rgba(10,10,30,0.80) 100%)',
+              printColorAdjust: 'exact',
             }} />
-            <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '10mm' }}>
-              <div style={{
-                display: 'inline-block', background: '#B8860B',
-                color: 'white', fontSize: '9pt', fontWeight: 600,
-                padding: '3px 12px', borderRadius: '2px', marginBottom: '6px', width: 'fit-content',
-                letterSpacing: '2px', textTransform: 'uppercase'
-              }}>
-                Красноярск
-              </div>
-              <div className="booklet-heading" style={{ color: 'white', fontSize: '32pt', fontWeight: 700, lineHeight: 1.1, marginBottom: '6px' }}>
-                Хостел на<br/>Красногорской
-              </div>
-              <div style={{ color: 'rgba(255,255,255,0.85)', fontSize: '11pt', fontWeight: 300 }}>
-                Уютное размещение • Домашняя кухня • Трансфер
-              </div>
-            </div>
-
-            {/* Золотая линия */}
+            {/* Золотая полоса снизу */}
             <div style={{
               position: 'absolute', bottom: 0, left: 0, right: 0,
-              height: '4px', background: '#B8860B'
+              height: 5, background: '#B8860B',
+              printColorAdjust: 'exact',
             }} />
-          </div>
-
-          {/* НОМЕРА */}
-          <div style={{ padding: '8mm 10mm' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6mm' }}>
-              <div style={{ width: '3px', height: '22px', background: '#B8860B', borderRadius: '2px' }} />
-              <div className="booklet-heading" style={{ fontSize: '18pt', fontWeight: 600, color: '#1a1a2e' }}>
-                Наши номера
+            {/* Текст */}
+            <div style={{
+              position: 'absolute', inset: 0,
+              display: 'flex', flexDirection: 'column',
+              justifyContent: 'flex-end',
+              padding: '0 10mm 8mm',
+            }}>
+              <div style={{
+                display: 'inline-block', background: '#B8860B', color: 'white',
+                fontSize: 8, fontWeight: 700, letterSpacing: 2,
+                textTransform: 'uppercase', padding: '3px 11px',
+                borderRadius: 2, marginBottom: 6, width: 'fit-content',
+                printColorAdjust: 'exact',
+              }}>
+                г. Красноярск
+              </div>
+              <div className="bhead" style={{ color: 'white', fontSize: 30, fontWeight: 700, lineHeight: 1.1, marginBottom: 5 }}>
+                Хостел на Красногорской
+              </div>
+              <div style={{ color: 'rgba(255,255,255,0.88)', fontSize: 10.5, fontWeight: 300 }}>
+                Уютное размещение&nbsp;&nbsp;•&nbsp;&nbsp;Домашняя кухня&nbsp;&nbsp;•&nbsp;&nbsp;Трансфер
               </div>
             </div>
+          </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '5mm' }}>
+          {/* ТЕЛО СТРАНИЦЫ 1 */}
+          <div style={{ padding: '6mm 10mm 0' }}>
+
+            {/* Заголовок "Наши номера" */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '4mm' }}>
+              <div style={{ width: 3, height: 20, background: '#B8860B', borderRadius: 2, flexShrink: 0 }} />
+              <div className="bhead" style={{ fontSize: 16, fontWeight: 600, color: '#1a1a2e' }}>Наши номера</div>
+            </div>
+
+            {/* 3 номера */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '4mm', marginBottom: '5mm' }}>
               {[
-                {
-                  img: 'https://cdn.poehali.dev/files/a2fe496b-1941-4729-966b-81ce98db8c57.jpg',
-                  title: '4-местный',
-                  desc: 'Уютный номер для небольшой группы',
-                  features: ['Собственный санузел', 'Душевая кабина', 'Постельное бельё']
-                },
-                {
-                  img: 'https://cdn.poehali.dev/files/282cb7d1-99f4-4580-af2c-6b1d10169356.jpg',
-                  title: '8-местный',
-                  desc: 'Просторный номер для рабочих бригад',
-                  features: ['Собственный санузел', 'Душевая кабина', 'Постельное бельё']
-                },
-                {
-                  img: 'https://cdn.poehali.dev/files/07638c2d-3ec1-4753-9d1c-10ab0efcaffd.jpg',
-                  title: '14-местный',
-                  desc: 'Большой номер для крупных групп',
-                  features: ['Собственный санузел', 'Душевая кабина', 'Постельное бельё']
-                }
-              ].map((room) => (
-                <div key={room.title} style={{
-                  border: '1px solid #e8e0d5',
-                  borderRadius: '6px',
-                  overflow: 'hidden',
-                  background: '#faf8f5'
-                }}>
-                  <img
-                    src={room.img}
-                    alt={room.title}
-                    style={{ width: '100%', height: '35mm', objectFit: 'cover', display: 'block' }}
-                  />
-                  <div style={{ padding: '4mm' }}>
-                    <div className="booklet-heading" style={{ fontSize: '12pt', fontWeight: 600, color: '#1a1a2e', marginBottom: '2mm' }}>
-                      {room.title}
-                    </div>
-                    <div style={{ fontSize: '8pt', color: '#666', marginBottom: '3mm', lineHeight: 1.4 }}>
-                      {room.desc}
-                    </div>
-                    {room.features.map(f => (
-                      <div key={f} style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '7.5pt', color: '#444', marginBottom: '1.5mm' }}>
-                        <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#B8860B', flexShrink: 0 }} />
+                { img: 'https://cdn.poehali.dev/files/a2fe496b-1941-4729-966b-81ce98db8c57.jpg', title: '4-местный', desc: 'Уютный номер для небольшой группы' },
+                { img: 'https://cdn.poehali.dev/files/282cb7d1-99f4-4580-af2c-6b1d10169356.jpg', title: '8-местный', desc: 'Просторный номер для рабочих бригад' },
+                { img: 'https://cdn.poehali.dev/files/07638c2d-3ec1-4753-9d1c-10ab0efcaffd.jpg', title: '14-местный', desc: 'Большой номер для крупных групп' },
+              ].map(room => (
+                <div key={room.title} style={{ border: '1px solid #e2d9ce', borderRadius: 6, overflow: 'hidden', background: '#faf8f5' }}>
+                  <img src={room.img} alt={room.title} style={{ width: '100%', height: '28mm', objectFit: 'cover', display: 'block' }} />
+                  <div style={{ padding: '3mm 3.5mm' }}>
+                    <div className="bhead" style={{ fontSize: 11, fontWeight: 600, color: '#1a1a2e', marginBottom: '1.5mm' }}>{room.title}</div>
+                    <div style={{ fontSize: 7.5, color: '#666', marginBottom: '2mm', lineHeight: 1.4 }}>{room.desc}</div>
+                    {['Санузел и душ в номере', 'Постельное бельё и полотенце'].map(f => (
+                      <div key={f} style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 7, color: '#444', marginBottom: '1mm' }}>
+                        <div style={{ width: 4, height: 4, borderRadius: '50%', background: '#B8860B', flexShrink: 0, printColorAdjust: 'exact' }} />
                         {f}
                       </div>
                     ))}
                     <div style={{
-                      marginTop: '3mm', padding: '2mm 4mm',
+                      marginTop: '2.5mm', padding: '1.5mm 3mm',
                       background: '#1a1a2e', color: '#B8860B',
-                      borderRadius: '4px', textAlign: 'center',
-                      fontSize: '9pt', fontWeight: 600
+                      borderRadius: 4, textAlign: 'center', fontSize: 8.5, fontWeight: 700,
+                      printColorAdjust: 'exact',
                     }}>
                       900 ₽ / место / сутки
                     </div>
@@ -160,138 +160,117 @@ const Booklet = () => {
             </div>
 
             {/* Галерея */}
-            <div style={{ marginTop: '6mm' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4mm' }}>
-                <div style={{ width: '3px', height: '22px', background: '#B8860B', borderRadius: '2px' }} />
-                <div className="booklet-heading" style={{ fontSize: '18pt', fontWeight: 600, color: '#1a1a2e' }}>
-                  Атмосфера
-                </div>
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '3mm' }}>
-                {[
-                  'https://cdn.poehali.dev/files/0ad0e3f9-3292-4355-8e4a-a5ad41a5459d.jpg',
-                  'https://cdn.poehali.dev/files/f438dff6-710a-447a-8276-b522408b2a6d.jpg',
-                  'https://cdn.poehali.dev/files/3622d273-d9fb-4caa-a8c5-a21dc52fbb4e.jpg',
-                ].map((src, i) => (
-                  <img key={i} src={src} alt="" style={{
-                    width: '100%', height: '28mm', objectFit: 'cover',
-                    borderRadius: '4px', display: 'block'
-                  }} />
-                ))}
-              </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '3mm' }}>
+              <div style={{ width: 3, height: 20, background: '#B8860B', borderRadius: 2, flexShrink: 0 }} />
+              <div className="bhead" style={{ fontSize: 16, fontWeight: 600, color: '#1a1a2e' }}>Атмосфера</div>
             </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '3mm' }}>
+              {[
+                'https://cdn.poehali.dev/files/0ad0e3f9-3292-4355-8e4a-a5ad41a5459d.jpg',
+                'https://cdn.poehali.dev/files/f438dff6-710a-447a-8276-b522408b2a6d.jpg',
+                'https://cdn.poehali.dev/files/3622d273-d9fb-4caa-a8c5-a21dc52fbb4e.jpg',
+              ].map((src, i) => (
+                <img key={i} src={src} alt="" style={{ width: '100%', height: '22mm', objectFit: 'cover', borderRadius: 4, display: 'block' }} />
+              ))}
+            </div>
+          </div>
+
+          {/* Футер стр.1 */}
+          <div style={{
+            position: 'absolute', bottom: 0, left: 0, right: 0,
+            background: '#1a1a2e', padding: '3.5mm 10mm',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            printColorAdjust: 'exact',
+          }}>
+            <div className="bhead" style={{ color: '#B8860B', fontSize: 11, fontWeight: 700 }}>Хостел на Красногорской</div>
+            <div style={{ color: 'rgba(255,255,255,0.55)', fontSize: 7.5 }}>г. Красноярск, 2-я Красногорская ул., д. 3</div>
+            <div style={{ color: 'white', fontSize: 10, fontWeight: 600 }}>+7 (903) 920-99-88</div>
           </div>
         </div>
 
-        {/* === СТРАНИЦА 2: ЦЕНЫ + КОНТАКТЫ === */}
-        <div className="booklet-page booklet-wrap shadow-2xl" style={{ background: 'white' }}>
 
-          {/* Шапка страницы 2 */}
+        {/* ════════════════════════════════════════
+            СТРАНИЦА 2
+        ════════════════════════════════════════ */}
+        <div className="bpage">
+
+          {/* Шапка стр.2 */}
           <div style={{
-            background: '#1a1a2e',
-            padding: '8mm 10mm',
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between'
+            background: '#1a1a2e', padding: '5.5mm 10mm',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            printColorAdjust: 'exact',
           }}>
-            <div>
-              <div className="booklet-heading" style={{ color: '#B8860B', fontSize: '18pt', fontWeight: 700 }}>
-                Хостел на Красногорской
-              </div>
-              <div style={{ color: 'rgba(255,255,255,0.7)', fontSize: '9pt', marginTop: '2px' }}>
-                г. Красноярск • 2-я Красногорская улица, 3
-              </div>
-            </div>
-            <div style={{ textAlign: 'right' }}>
-              <div style={{ color: '#B8860B', fontSize: '9pt', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase' }}>
-                Цены и услуги
-              </div>
-            </div>
+            <div className="bhead" style={{ color: '#B8860B', fontSize: 16, fontWeight: 700 }}>Хостел на Красногорской</div>
+            <div style={{ color: 'rgba(255,255,255,0.65)', fontSize: 8.5 }}>Цены, услуги и контакты</div>
           </div>
 
-          <div style={{ padding: '8mm 10mm' }}>
+          <div style={{ padding: '6mm 10mm' }}>
 
-            {/* Цены на проживание */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6mm', marginBottom: '7mm' }}>
+            {/* Цены — 2 колонки */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5mm', marginBottom: '5mm' }}>
 
+              {/* Проживание */}
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4mm' }}>
-                  <div style={{ width: '3px', height: '20px', background: '#B8860B', borderRadius: '2px' }} />
-                  <div className="booklet-heading" style={{ fontSize: '15pt', fontWeight: 600, color: '#1a1a2e' }}>
-                    Проживание
-                  </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '3mm' }}>
+                  <div style={{ width: 3, height: 18, background: '#B8860B', borderRadius: 2, flexShrink: 0 }} />
+                  <div className="bhead" style={{ fontSize: 14, fontWeight: 600, color: '#1a1a2e' }}>Проживание</div>
                 </div>
-
-                <div style={{
-                  background: '#faf8f5', border: '1px solid #e8e0d5',
-                  borderRadius: '8px', overflow: 'hidden'
-                }}>
-                  <div style={{ background: '#1a1a2e', padding: '4mm 5mm' }}>
-                    <div style={{ color: '#B8860B', fontSize: '9pt', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase' }}>
-                      Тариф за койко-место
-                    </div>
+                <div style={{ border: '1px solid #e2d9ce', borderRadius: 7, overflow: 'hidden' }}>
+                  <div style={{ background: '#1a1a2e', padding: '3mm 4mm', printColorAdjust: 'exact' }}>
+                    <div style={{ color: '#B8860B', fontSize: 7.5, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase' }}>Тариф за койко-место / сутки</div>
                   </div>
-                  <div style={{ padding: '4mm 5mm' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '3mm 0', borderBottom: '1px solid #e8e0d5' }}>
-                      <div>
-                        <div style={{ fontSize: '10pt', fontWeight: 500, color: '#1a1a2e' }}>Стандартный</div>
-                        <div style={{ fontSize: '8pt', color: '#888' }}>1–6 дней</div>
+                  <div style={{ background: '#faf8f5', padding: '0 4mm' }}>
+                    {[
+                      { label: 'Стандартный', sub: '1–6 дней', price: '900 ₽' },
+                      { label: 'Длительное', sub: 'от 7 дней', price: '850 ₽' },
+                    ].map((r, i) => (
+                      <div key={i} style={{
+                        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                        padding: '3.5mm 0',
+                        borderBottom: i === 0 ? '1px solid #e2d9ce' : 'none',
+                      }}>
+                        <div>
+                          <div style={{ fontSize: 9.5, fontWeight: 500, color: '#1a1a2e' }}>{r.label}</div>
+                          <div style={{ fontSize: 7.5, color: '#888' }}>{r.sub}</div>
+                        </div>
+                        <div style={{ fontSize: 15, fontWeight: 700, color: '#B8860B' }}>{r.price}</div>
                       </div>
-                      <div style={{ fontSize: '14pt', fontWeight: 700, color: '#B8860B' }}>900 ₽</div>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '3mm 0' }}>
-                      <div>
-                        <div style={{ fontSize: '10pt', fontWeight: 500, color: '#1a1a2e' }}>Длительное проживание</div>
-                        <div style={{ fontSize: '8pt', color: '#888' }}>от 7 дней</div>
-                      </div>
-                      <div style={{ fontSize: '14pt', fontWeight: 700, color: '#B8860B' }}>850 ₽</div>
-                    </div>
-                    <div style={{
-                      marginTop: '3mm', padding: '2.5mm 4mm',
-                      background: '#f0ece6', borderRadius: '4px',
-                      fontSize: '8pt', color: '#555', lineHeight: 1.4
-                    }}>
-                      В стоимость включены постельное бельё и полотенце
+                    ))}
+                    <div style={{ padding: '2.5mm 0 3mm', fontSize: 7.5, color: '#666', lineHeight: 1.4 }}>
+                      Постельное бельё и полотенце включены
                     </div>
                   </div>
                 </div>
               </div>
 
+              {/* Питание */}
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4mm' }}>
-                  <div style={{ width: '3px', height: '20px', background: '#B8860B', borderRadius: '2px' }} />
-                  <div className="booklet-heading" style={{ fontSize: '15pt', fontWeight: 600, color: '#1a1a2e' }}>
-                    Питание
-                  </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '3mm' }}>
+                  <div style={{ width: 3, height: 18, background: '#B8860B', borderRadius: 2, flexShrink: 0 }} />
+                  <div className="bhead" style={{ fontSize: 14, fontWeight: 600, color: '#1a1a2e' }}>Питание</div>
                 </div>
-
-                <div style={{
-                  background: '#faf8f5', border: '1px solid #e8e0d5',
-                  borderRadius: '8px', overflow: 'hidden'
-                }}>
-                  <div style={{ background: '#1a1a2e', padding: '4mm 5mm' }}>
-                    <div style={{ color: '#B8860B', fontSize: '9pt', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase' }}>
-                      Домашняя кухня
-                    </div>
+                <div style={{ border: '1px solid #e2d9ce', borderRadius: 7, overflow: 'hidden' }}>
+                  <div style={{ background: '#1a1a2e', padding: '3mm 4mm', printColorAdjust: 'exact' }}>
+                    <div style={{ color: '#B8860B', fontSize: 7.5, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase' }}>Домашняя кухня / в день</div>
                   </div>
-                  <div style={{ padding: '4mm 5mm' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '3mm 0', borderBottom: '1px solid #e8e0d5' }}>
-                      <div>
-                        <div style={{ fontSize: '10pt', fontWeight: 500, color: '#1a1a2e' }}>Двухразовое</div>
-                        <div style={{ fontSize: '8pt', color: '#888' }}>Завтрак + Ужин</div>
+                  <div style={{ background: '#faf8f5', padding: '0 4mm' }}>
+                    {[
+                      { label: 'Двухразовое', sub: 'Завтрак + Ужин', price: '900 ₽' },
+                      { label: 'Трёхразовое', sub: 'Завтрак + Обед + Ужин', price: '1 100 ₽' },
+                    ].map((r, i) => (
+                      <div key={i} style={{
+                        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                        padding: '3.5mm 0',
+                        borderBottom: i === 0 ? '1px solid #e2d9ce' : 'none',
+                      }}>
+                        <div>
+                          <div style={{ fontSize: 9.5, fontWeight: 500, color: '#1a1a2e' }}>{r.label}</div>
+                          <div style={{ fontSize: 7.5, color: '#888' }}>{r.sub}</div>
+                        </div>
+                        <div style={{ fontSize: 15, fontWeight: 700, color: '#B8860B' }}>{r.price}</div>
                       </div>
-                      <div style={{ fontSize: '14pt', fontWeight: 700, color: '#B8860B' }}>900 ₽</div>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '3mm 0' }}>
-                      <div>
-                        <div style={{ fontSize: '10pt', fontWeight: 500, color: '#1a1a2e' }}>Трёхразовое</div>
-                        <div style={{ fontSize: '8pt', color: '#888' }}>Завтрак + Обед + Ужин</div>
-                      </div>
-                      <div style={{ fontSize: '14pt', fontWeight: 700, color: '#B8860B' }}>1 100 ₽</div>
-                    </div>
-                    <div style={{
-                      marginTop: '3mm', padding: '2.5mm 4mm',
-                      background: '#f0ece6', borderRadius: '4px',
-                      fontSize: '8pt', color: '#555', lineHeight: 1.4
-                    }}>
+                    ))}
+                    <div style={{ padding: '2.5mm 0 3mm', fontSize: 7.5, color: '#666', lineHeight: 1.4 }}>
                       Горячие блюда, меню обновляется ежедневно
                     </div>
                   </div>
@@ -299,84 +278,75 @@ const Booklet = () => {
               </div>
             </div>
 
-            {/* Услуги для компаний */}
-            <div style={{ marginBottom: '7mm' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4mm' }}>
-                <div style={{ width: '3px', height: '20px', background: '#B8860B', borderRadius: '2px' }} />
-                <div className="booklet-heading" style={{ fontSize: '15pt', fontWeight: 600, color: '#1a1a2e' }}>
-                  Для компаний и организаций
+            {/* Заселение / выезд */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4mm', marginBottom: '5mm' }}>
+              {[
+                { emoji: '🌅', label: 'Заселение', time: 'с 14:00', note: 'раннее с 08:00 — по согласованию' },
+                { emoji: '🌙', label: 'Выезд', time: 'до 12:00', note: 'позднее до 18:00 — по согласованию' },
+              ].map(item => (
+                <div key={item.label} style={{
+                  background: '#1a1a2e', borderRadius: 7, padding: '3.5mm 4.5mm',
+                  display: 'flex', alignItems: 'center', gap: '3.5mm',
+                  printColorAdjust: 'exact',
+                }}>
+                  <span style={{ fontSize: 20 }}>{item.emoji}</span>
+                  <div>
+                    <div style={{ color: '#B8860B', fontSize: 7.5, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1 }}>{item.label}</div>
+                    <div style={{ color: 'white', fontSize: 14, fontWeight: 700 }}>{item.time}</div>
+                    <div style={{ color: 'rgba(255,255,255,0.55)', fontSize: 7 }}>{item.note}</div>
+                  </div>
                 </div>
+              ))}
+            </div>
+
+            {/* Услуги для компаний */}
+            <div style={{ marginBottom: '5mm' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '3mm' }}>
+                <div style={{ width: 3, height: 18, background: '#B8860B', borderRadius: 2, flexShrink: 0 }} />
+                <div className="bhead" style={{ fontSize: 14, fontWeight: 600, color: '#1a1a2e' }}>Услуги для компаний и организаций</div>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '4mm' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '3mm' }}>
                 {[
-                  { icon: '🏠', title: 'Проживание', desc: 'Размещение рабочих бригад и вахтовых сотрудников' },
-                  { icon: '🍽️', title: 'Питание', desc: 'Организация питания для всей команды' },
-                  { icon: '🚌', title: 'Трансфер', desc: 'Организация трансфера до объекта и обратно' },
-                  { icon: '📋', title: 'Регистрация', desc: 'Миграционный учёт иностранных граждан бесплатно' },
+                  { emoji: '🏠', title: 'Проживание', desc: 'Размещение вахтовых сотрудников и бригад' },
+                  { emoji: '🍽️', title: 'Питание', desc: 'Организация питания для всей команды' },
+                  { emoji: '🚌', title: 'Трансфер', desc: 'Доставка до объекта и обратно' },
+                  { emoji: '📋', title: 'Регистрация', desc: 'Миграционный учёт иностранцев — бесплатно' },
                 ].map(item => (
                   <div key={item.title} style={{
-                    background: '#faf8f5', border: '1px solid #e8e0d5',
-                    borderRadius: '6px', padding: '4mm', textAlign: 'center'
+                    background: '#faf8f5', border: '1px solid #e2d9ce',
+                    borderRadius: 7, padding: '3.5mm', textAlign: 'center',
                   }}>
-                    <div style={{ fontSize: '20pt', marginBottom: '2mm' }}>{item.icon}</div>
-                    <div style={{ fontSize: '9pt', fontWeight: 600, color: '#1a1a2e', marginBottom: '1.5mm' }}>{item.title}</div>
-                    <div style={{ fontSize: '7.5pt', color: '#666', lineHeight: 1.4 }}>{item.desc}</div>
+                    <div style={{ fontSize: 18, marginBottom: '1.5mm' }}>{item.emoji}</div>
+                    <div style={{ fontSize: 8.5, fontWeight: 700, color: '#1a1a2e', marginBottom: '1.5mm' }}>{item.title}</div>
+                    <div style={{ fontSize: 7, color: '#666', lineHeight: 1.4 }}>{item.desc}</div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Время заселения */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4mm', marginBottom: '7mm' }}>
-              <div style={{
-                background: '#1a1a2e', borderRadius: '6px', padding: '4mm 5mm',
-                display: 'flex', alignItems: 'center', gap: '4mm'
-              }}>
-                <div style={{ fontSize: '18pt' }}>🌅</div>
-                <div>
-                  <div style={{ color: '#B8860B', fontSize: '9pt', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>Заселение</div>
-                  <div style={{ color: 'white', fontSize: '13pt', fontWeight: 700 }}>с 14:00</div>
-                  <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '7.5pt' }}>раннее с 08:00 — по согласованию</div>
-                </div>
-              </div>
-              <div style={{
-                background: '#1a1a2e', borderRadius: '6px', padding: '4mm 5mm',
-                display: 'flex', alignItems: 'center', gap: '4mm'
-              }}>
-                <div style={{ fontSize: '18pt' }}>🌙</div>
-                <div>
-                  <div style={{ color: '#B8860B', fontSize: '9pt', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>Выезд</div>
-                  <div style={{ color: 'white', fontSize: '13pt', fontWeight: 700 }}>до 12:00</div>
-                  <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '7.5pt' }}>позднее до 18:00 — по согласованию</div>
-                </div>
-              </div>
-            </div>
-
             {/* Контакты + карта */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6mm' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: '5mm' }}>
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4mm' }}>
-                  <div style={{ width: '3px', height: '20px', background: '#B8860B', borderRadius: '2px' }} />
-                  <div className="booklet-heading" style={{ fontSize: '15pt', fontWeight: 600, color: '#1a1a2e' }}>
-                    Контакты
-                  </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '3mm' }}>
+                  <div style={{ width: 3, height: 18, background: '#B8860B', borderRadius: 2, flexShrink: 0 }} />
+                  <div className="bhead" style={{ fontSize: 14, fontWeight: 600, color: '#1a1a2e' }}>Контакты</div>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '3mm' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5mm' }}>
                   {[
-                    { icon: '📍', label: 'Адрес', value: 'г. Красноярск,\n2-я Красногорская ул., д. 3' },
-                    { icon: '📞', label: 'Телефон', value: '+7 (903) 920-99-88' },
-                    { icon: '✉️', label: 'Email', value: 'hostel.bl124@mail.ru' },
-                    { icon: '🕐', label: 'Режим работы', value: 'Круглосуточно, 24/7' },
+                    { emoji: '📍', label: 'Адрес', value: 'г. Красноярск, 2-я Красногорская ул., д. 3' },
+                    { emoji: '📞', label: 'Телефон', value: '+7 (903) 920-99-88' },
+                    { emoji: '✉️', label: 'Email', value: 'hostel.bl124@mail.ru' },
+                    { emoji: '🕐', label: 'Режим работы', value: 'Круглосуточно, 24/7, без выходных' },
                   ].map(item => (
                     <div key={item.label} style={{
-                      display: 'flex', gap: '3mm', alignItems: 'flex-start',
-                      padding: '3mm', background: '#faf8f5',
-                      borderRadius: '5px', border: '1px solid #e8e0d5'
+                      display: 'flex', gap: '3mm', alignItems: 'center',
+                      background: '#faf8f5', border: '1px solid #e2d9ce',
+                      borderRadius: 5, padding: '2.5mm 3.5mm',
                     }}>
-                      <span style={{ fontSize: '12pt', lineHeight: 1 }}>{item.icon}</span>
+                      <span style={{ fontSize: 13, flexShrink: 0 }}>{item.emoji}</span>
                       <div>
-                        <div style={{ fontSize: '7.5pt', color: '#B8860B', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{item.label}</div>
-                        <div style={{ fontSize: '9.5pt', color: '#1a1a2e', fontWeight: 500, whiteSpace: 'pre-line', lineHeight: 1.3 }}>{item.value}</div>
+                        <div style={{ fontSize: 7, color: '#B8860B', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.5 }}>{item.label}</div>
+                        <div style={{ fontSize: 9, color: '#1a1a2e', fontWeight: 500, lineHeight: 1.3 }}>{item.value}</div>
                       </div>
                     </div>
                   ))}
@@ -384,21 +354,18 @@ const Booklet = () => {
               </div>
 
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4mm' }}>
-                  <div style={{ width: '3px', height: '20px', background: '#B8860B', borderRadius: '2px' }} />
-                  <div className="booklet-heading" style={{ fontSize: '15pt', fontWeight: 600, color: '#1a1a2e' }}>
-                    Как нас найти
-                  </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '3mm' }}>
+                  <div style={{ width: 3, height: 18, background: '#B8860B', borderRadius: 2, flexShrink: 0 }} />
+                  <div className="bhead" style={{ fontSize: 14, fontWeight: 600, color: '#1a1a2e' }}>Как нас найти</div>
                 </div>
                 <img
                   src="https://cdn.poehali.dev/files/b7c33b32-1062-4995-9df3-17e97c480545.png"
                   alt="Карта"
-                  style={{ width: '100%', borderRadius: '6px', border: '1px solid #e8e0d5', display: 'block' }}
+                  style={{ width: '100%', borderRadius: 6, border: '1px solid #e2d9ce', display: 'block' }}
                 />
                 <div style={{
-                  marginTop: '2mm', padding: '2.5mm 4mm',
-                  background: '#f0ece6', borderRadius: '4px',
-                  fontSize: '8pt', color: '#555', textAlign: 'center'
+                  marginTop: '2mm', background: '#f0ece6', borderRadius: 4,
+                  padding: '2mm 3mm', fontSize: 7.5, color: '#555', textAlign: 'center',
                 }}>
                   Шаговая доступность от Миграционного центра
                 </div>
@@ -407,29 +374,24 @@ const Booklet = () => {
 
           </div>
 
-          {/* Футер */}
+          {/* Футер стр.2 */}
           <div style={{
-            background: '#1a1a2e',
-            padding: '5mm 10mm',
+            position: 'absolute', bottom: 0, left: 0, right: 0,
+            background: '#B8860B', padding: '4mm 10mm',
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            marginTop: 'auto'
+            printColorAdjust: 'exact',
           }}>
-            <div className="booklet-heading" style={{ color: '#B8860B', fontSize: '12pt', fontWeight: 600 }}>
-              Хостел на Красногорской
+            <div style={{ color: 'white', fontSize: 10, fontWeight: 700 }}>+7 (903) 920-99-88</div>
+            <div style={{ color: 'rgba(255,255,255,0.9)', fontSize: 8.5, textAlign: 'center' }}>
+              Звоните в любое время — мы работаем круглосуточно
             </div>
-            <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '8pt', textAlign: 'center' }}>
-              Работаем 24/7 • Звоните в любое время
-            </div>
-            <div style={{ color: 'white', fontSize: '10pt', fontWeight: 600 }}>
-              +7 (903) 920-99-88
-            </div>
+            <div style={{ color: 'white', fontSize: 9, fontWeight: 600 }}>hostel.bl124@mail.ru</div>
           </div>
-
         </div>
 
-        {/* Подсказка */}
-        <div className="no-print text-center text-sm text-gray-500 pb-8">
-          Нажмите «Распечатать / Сохранить PDF» → в диалоге печати выберите «Сохранить как PDF»
+        {/* Подсказка на экране */}
+        <div className="no-print" style={{ color: '#888', fontSize: 13, textAlign: 'center', paddingBottom: 24 }}>
+          Нажмите «Сохранить PDF / Печать» → в диалоге выберите «Сохранить как PDF», поля — «Нет»
         </div>
       </div>
     </>
