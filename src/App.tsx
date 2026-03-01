@@ -11,6 +11,7 @@ import ContactForm from "./pages/ContactForm";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import HouseRules from "./pages/HouseRules";
+import Booklet from "./pages/Booklet";
 import NotFound from "./pages/NotFound";
 import CookieConsent from "./components/CookieConsent";
 
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfService />} />
           <Route path="/rules" element={<HouseRules />} />
+          <Route path="/booklet" element={<Booklet />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
