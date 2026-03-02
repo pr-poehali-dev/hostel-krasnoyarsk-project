@@ -120,27 +120,27 @@ const Booklet = () => {
           </div>
 
           {/* ТЕЛО СТРАНИЦЫ 1 */}
-          <div style={{ padding: '4mm 10mm 0', flex: 1, display: 'flex', flexDirection: 'column' }}>
+          <div style={{ padding: '3mm 10mm 0', flex: 1, display: 'flex', flexDirection: 'column' }}>
 
             {/* Заголовок "Наши номера" */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '3mm' }}>
-              <div style={{ width: 3, height: 18, background: '#B8860B', borderRadius: 2, flexShrink: 0 }} />
-              <div className="bhead" style={{ fontSize: 15, fontWeight: 600, color: '#1a1a2e' }}>Наши номера</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '2mm' }}>
+              <div style={{ width: 3, height: 16, background: '#B8860B', borderRadius: 2, flexShrink: 0 }} />
+              <div className="bhead" style={{ fontSize: 13, fontWeight: 600, color: '#1a1a2e' }}>Наши номера</div>
             </div>
 
             {/* 3 номера */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '4mm', marginBottom: '4mm' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '3mm', marginBottom: '3mm' }}>
               {[
                 { img: 'https://cdn.poehali.dev/files/7d655c9d-d41d-497f-9f54-306ac0b10cb9.jpg', title: '4-местный' },
                 { img: 'https://cdn.poehali.dev/files/282cb7d1-99f4-4580-af2c-6b1d10169356.jpg', title: '8-местный' },
                 { img: 'https://cdn.poehali.dev/files/07638c2d-3ec1-4753-9d1c-10ab0efcaffd.jpg', title: '14-местный' },
               ].map(room => (
                 <div key={room.title} style={{ border: '1px solid #e2d9ce', borderRadius: 6, overflow: 'hidden', background: '#faf8f5' }}>
-                  <img src={room.img} alt={room.title} style={{ width: '100%', height: '30mm', objectFit: 'cover', display: 'block' }} />
-                  <div style={{ padding: '2.5mm 3.5mm' }}>
-                    <div className="bhead" style={{ fontSize: 11, fontWeight: 600, color: '#1a1a2e', marginBottom: '2mm' }}>{room.title}</div>
+                  <img src={room.img} alt={room.title} style={{ width: '100%', height: '26mm', objectFit: 'cover', display: 'block' }} />
+                  <div style={{ padding: '2mm 3mm' }}>
+                    <div className="bhead" style={{ fontSize: 10, fontWeight: 600, color: '#1a1a2e', marginBottom: '1.5mm' }}>{room.title}</div>
                     {['Санузел и душ в номере', 'Постельное бельё и полотенце'].map(f => (
-                      <div key={f} style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 7.5, color: '#444', marginBottom: '1.5mm' }}>
+                      <div key={f} style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 7, color: '#444', marginBottom: '1mm' }}>
                         <div style={{ width: 4, height: 4, borderRadius: '50%', background: '#B8860B', flexShrink: 0, printColorAdjust: 'exact' }} />
                         {f}
                       </div>
@@ -151,9 +151,9 @@ const Booklet = () => {
             </div>
 
             {/* Галерея */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '3mm', marginTop: '4mm' }}>
-              <div style={{ width: 3, height: 18, background: '#B8860B', borderRadius: 2, flexShrink: 0 }} />
-              <div className="bhead" style={{ fontSize: 15, fontWeight: 600, color: '#1a1a2e' }}>Атмосфера</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '2mm' }}>
+              <div style={{ width: 3, height: 16, background: '#B8860B', borderRadius: 2, flexShrink: 0 }} />
+              <div className="bhead" style={{ fontSize: 13, fontWeight: 600, color: '#1a1a2e' }}>Атмосфера</div>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gridTemplateRows: '1fr 1fr', gap: '3mm', flex: 1, marginBottom: '3mm' }}>
               {[
@@ -161,12 +161,12 @@ const Booklet = () => {
                 'https://cdn.poehali.dev/files/f438dff6-710a-447a-8276-b522408b2a6d.jpg',
                 'https://cdn.poehali.dev/files/3622d273-d9fb-4caa-a8c5-a21dc52fbb4e.jpg',
                 'https://cdn.poehali.dev/files/5f506f17-b2f9-44fb-8fbe-f231b1627917.jpg',
-                'ФОТО_5',
+                'https://cdn.poehali.dev/files/53748e93-ab09-4622-b439-accb8c7a84c0.jpg',
                 'ФОТО_6',
               ].map((src, i) => (
                 src.startsWith('http')
-                  ? <img key={i} src={src} alt="" style={{ width: '100%', height: '100%', minHeight: '28mm', objectFit: 'cover', objectPosition: 'center', borderRadius: 4, display: 'block' }} />
-                  : <div key={i} style={{ width: '100%', minHeight: '28mm', borderRadius: 4, background: '#e8e8e8', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#aaa', fontSize: 11 }}>{src}</div>
+                  ? <img key={i} src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', borderRadius: 4, display: 'block' }} />
+                  : <div key={i} style={{ width: '100%', borderRadius: 4, background: '#e8e8e8', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#aaa', fontSize: 11 }}>{src}</div>
               ))}
             </div>
           </div>
