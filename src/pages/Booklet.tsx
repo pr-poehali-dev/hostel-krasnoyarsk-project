@@ -129,7 +129,7 @@ const Booklet = () => {
               <div style={{ width: 3, height: 16, background: '#B8860B', borderRadius: 2, flexShrink: 0 }} />
               <div className="bhead" style={{ fontSize: 14, fontWeight: 600, color: '#1a1a2e' }}>Атмосфера</div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '4mm' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gridTemplateRows: '30mm 30mm', gap: '4mm' }}>
               {[
                 'https://cdn.poehali.dev/files/0ad0e3f9-3292-4355-8e4a-a5ad41a5459d.jpg',
                 'https://cdn.poehali.dev/files/f438dff6-710a-447a-8276-b522408b2a6d.jpg',
@@ -138,9 +138,7 @@ const Booklet = () => {
                 'https://cdn.poehali.dev/files/53748e93-ab09-4622-b439-accb8c7a84c0.jpg',
                 'https://cdn.poehali.dev/files/f8409f66-0314-4184-93e9-b231ed571e34.jpg',
               ].map((src, i) => (
-                <div key={i} style={{ borderRadius: 5, overflow: 'hidden', background: '#f0ece6', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src={src} alt="" style={{ width: '100%', height: 'auto', display: 'block' }} />
-                </div>
+                <img key={i} src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', borderRadius: 5, display: 'block' }} />
               ))}
             </div>
           </div>
