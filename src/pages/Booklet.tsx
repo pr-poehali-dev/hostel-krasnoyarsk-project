@@ -272,21 +272,29 @@ const Booklet = () => {
                 <div style={{ width: 3, height: 18, background: '#B8860B', borderRadius: 2, flexShrink: 0 }} />
                 <div className="bhead" style={{ fontSize: 14, fontWeight: 600, color: '#1a1a2e' }}>Услуги для компаний и организаций</div>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '3mm' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '2.5mm 5mm' }}>
                 {[
-                  { emoji: '🏠', title: 'Проживание', desc: 'Размещение вахтовых сотрудников и бригад' },
-                  { emoji: '🍽️', title: 'Питание', desc: 'Организация питания для всей команды' },
-                  { emoji: '🚌', title: 'Трансфер', desc: 'Доставка до объекта и обратно' },
-                  { emoji: '📋', title: 'Регистрация', desc: 'Миграционный учёт иностранцев — бесплатно' },
-                ].map(item => (
-                  <div key={item.title} style={{
-                    background: '#faf8f5', border: '1px solid #e2d9ce',
-                    borderRadius: 7, padding: '3.5mm', textAlign: 'center',
-                  }}>
-                    <div style={{ fontSize: 18, marginBottom: '1.5mm' }}>{item.emoji}</div>
-                    <div style={{ fontSize: 8.5, fontWeight: 700, color: '#1a1a2e', marginBottom: '1.5mm' }}>{item.title}</div>
-                    <div style={{ fontSize: 7, color: '#666', lineHeight: 1.4 }}>{item.desc}</div>
-                  </div>
+                  { emoji: '🏠', title: 'Проживание' },
+                  { emoji: '🍽️', title: 'Питание' },
+                  { emoji: '🚌', title: 'Трансфер' },
+                  { emoji: '📋', title: 'Регистрация' },
+                ].map((item, i) => (
+                  <>
+                    {/* Левая колонка — метка */}
+                    <div key={item.title + '-label'} style={{
+                      background: '#1a1a2e', borderRadius: 6, padding: '3mm 4mm',
+                      display: 'flex', alignItems: 'center', gap: '2.5mm',
+                      whiteSpace: 'nowrap', printColorAdjust: 'exact',
+                    }}>
+                      <span style={{ fontSize: 14 }}>{item.emoji}</span>
+                      <div style={{ fontSize: 9, fontWeight: 700, color: 'white' }}>{item.title}</div>
+                    </div>
+                    {/* Правая колонка — пустое место для текста */}
+                    <div key={item.title + '-desc'} style={{
+                      border: '1px dashed #c9bfb0', borderRadius: 6,
+                      padding: '3mm 4mm', minHeight: '11mm',
+                    }} />
+                  </>
                 ))}
               </div>
             </div>
