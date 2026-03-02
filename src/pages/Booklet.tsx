@@ -161,7 +161,7 @@ const Booklet = () => {
                 'https://cdn.poehali.dev/files/f438dff6-710a-447a-8276-b522408b2a6d.jpg',
                 'https://cdn.poehali.dev/files/3622d273-d9fb-4caa-a8c5-a21dc52fbb4e.jpg',
               ].map((src, i) => (
-                <img key={i} src={src} alt="" style={{ width: '100%', height: '32mm', objectFit: 'cover', borderRadius: 4, display: 'block' }} />
+                <img key={i} src={src} alt="" style={{ width: '100%', height: '44mm', objectFit: 'cover', objectPosition: 'center', borderRadius: 4, display: 'block' }} />
               ))}
             </div>
           </div>
