@@ -136,7 +136,7 @@ const Booklet = () => {
                 { img: 'https://cdn.poehali.dev/files/07638c2d-3ec1-4753-9d1c-10ab0efcaffd.jpg', title: '14-местный' },
               ].map(room => (
                 <div key={room.title} style={{ border: '1px solid #e2d9ce', borderRadius: 6, overflow: 'hidden', background: '#faf8f5' }}>
-                  <img src={room.img} alt={room.title} style={{ width: '100%', height: '26mm', objectFit: 'cover', display: 'block' }} />
+                  <img src={room.img} alt={room.title} style={{ width: '100%', height: '40mm', objectFit: 'cover', display: 'block' }} />
                   <div style={{ padding: '2mm 3mm' }}>
                     <div className="bhead" style={{ fontSize: 10, fontWeight: 600, color: '#1a1a2e', marginBottom: '1.5mm' }}>{room.title}</div>
                     {['Санузел и душ в номере', 'Постельное бельё и полотенце'].map(f => (
@@ -164,7 +164,7 @@ const Booklet = () => {
                 'https://cdn.poehali.dev/files/53748e93-ab09-4622-b439-accb8c7a84c0.jpg',
                 'https://cdn.poehali.dev/files/f8409f66-0314-4184-93e9-b231ed571e34.jpg',
               ].map((src, i) => (
-                <img key={i} src={src} alt="" style={{ width: '100%', height: '32mm', objectFit: 'cover', objectPosition: 'center', borderRadius: 4, display: 'block' }} />
+                <img key={i} src={src} alt="" style={{ width: '100%', height: 'auto', objectFit: 'contain', borderRadius: 4, display: 'block' }} />
               ))}
             </div>
           </div>
