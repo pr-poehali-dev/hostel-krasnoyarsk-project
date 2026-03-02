@@ -131,7 +131,7 @@ const Booklet = () => {
             {/* 3 номера */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '4mm', marginBottom: '4mm' }}>
               {[
-                { img: 'https://cdn.poehali.dev/files/a2fe496b-1941-4729-966b-81ce98db8c57.jpg', title: '4-местный' },
+                { img: 'https://cdn.poehali.dev/files/7d655c9d-d41d-497f-9f54-306ac0b10cb9.jpg', title: '4-местный' },
                 { img: 'https://cdn.poehali.dev/files/282cb7d1-99f4-4580-af2c-6b1d10169356.jpg', title: '8-местный' },
                 { img: 'https://cdn.poehali.dev/files/07638c2d-3ec1-4753-9d1c-10ab0efcaffd.jpg', title: '14-местный' },
               ].map(room => (
