@@ -72,12 +72,12 @@ const Booklet = () => {
         <div className="bpage" style={{ display: 'flex', flexDirection: 'column' }}>
 
           {/* ШАПКА — фото как обычный img, текст поверх */}
-          <div style={{ position: 'relative', height: '80mm', overflow: 'hidden', flexShrink: 0 }}>
+          <div style={{ position: 'relative', height: '60mm', overflow: 'hidden', flexShrink: 0 }}>
             <img
               src="https://cdn.poehali.dev/files/6aebe38d-8d22-4cfc-8558-fd863e1c9eef.jpg"
               alt="Хостел на Красногорской"
               style={{
-                width: '100%', height: '80mm',
+                width: '100%', height: '60mm',
                 objectFit: 'cover', display: 'block',
                 printColorAdjust: 'exact',
               }}
@@ -155,18 +155,16 @@ const Booklet = () => {
               <div style={{ width: 3, height: 16, background: '#B8860B', borderRadius: 2, flexShrink: 0 }} />
               <div className="bhead" style={{ fontSize: 13, fontWeight: 600, color: '#1a1a2e' }}>Атмосфера</div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gridTemplateRows: '1fr 1fr', gap: '3mm', flex: 1, marginBottom: '3mm' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '3mm', marginBottom: '3mm' }}>
               {[
                 'https://cdn.poehali.dev/files/0ad0e3f9-3292-4355-8e4a-a5ad41a5459d.jpg',
                 'https://cdn.poehali.dev/files/f438dff6-710a-447a-8276-b522408b2a6d.jpg',
                 'https://cdn.poehali.dev/files/3622d273-d9fb-4caa-a8c5-a21dc52fbb4e.jpg',
                 'https://cdn.poehali.dev/files/5f506f17-b2f9-44fb-8fbe-f231b1627917.jpg',
                 'https://cdn.poehali.dev/files/53748e93-ab09-4622-b439-accb8c7a84c0.jpg',
-                'ФОТО_6',
+                'https://cdn.poehali.dev/files/f8409f66-0314-4184-93e9-b231ed571e34.jpg',
               ].map((src, i) => (
-                src.startsWith('http')
-                  ? <img key={i} src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', borderRadius: 4, display: 'block' }} />
-                  : <div key={i} style={{ width: '100%', borderRadius: 4, background: '#e8e8e8', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#aaa', fontSize: 11 }}>{src}</div>
+                <img key={i} src={src} alt="" style={{ width: '100%', height: '32mm', objectFit: 'cover', objectPosition: 'center', borderRadius: 4, display: 'block' }} />
               ))}
             </div>
           </div>
