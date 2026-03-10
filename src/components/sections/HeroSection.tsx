@@ -22,8 +22,11 @@ const HeroSection = ({ scrollToSection }: HeroSectionProps) => {
               <Button onClick={() => scrollToSection('booking')} size="lg" className="text-base sm:text-lg w-full sm:w-auto">
                 Забронировать
               </Button>
-              <Button onClick={() => scrollToSection('about')} variant="outline" size="lg" className="text-base sm:text-lg w-full sm:w-auto">
-                Узнать больше
+              <Button asChild size="lg" className="text-base sm:text-lg w-full sm:w-auto">
+                <a href="tel:+79039209988">
+                  <Icon name="Phone" size={20} className="mr-2" />
+                  Позвонить
+                </a>
               </Button>
             </div>
             <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-6 pt-2 sm:pt-4">
