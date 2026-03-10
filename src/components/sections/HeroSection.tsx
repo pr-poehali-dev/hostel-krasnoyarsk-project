@@ -20,6 +20,7 @@ const HeroSection = ({ scrollToSection }: HeroSectionProps) => {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Button onClick={() => scrollToSection('booking')} size="lg" className="text-base sm:text-lg w-full sm:w-auto">
+                <Icon name="Home" size={20} className="mr-2" />
                 Забронировать
               </Button>
               <Button asChild size="lg" className="text-base sm:text-lg w-full sm:w-auto">
