@@ -33,7 +33,7 @@ const HeroSection = ({ scrollToSection }: HeroSectionProps) => {
             <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-6 pt-2 sm:pt-4">
               <div className="flex items-center gap-2">
                 <Icon name="Users" className="text-primary" size={20} />
-                <span className="text-sm sm:text-base text-foreground font-semibold">Комнаты от 4-х до 14-ти мест</span>
+                <span className="text-sm sm:text-base text-foreground font-semibold">Комнаты от 4-х до 12-ти мест</span>
               </div>
               <div className="flex items-center gap-2">
                 <Icon name="Utensils" className="text-primary" size={20} />

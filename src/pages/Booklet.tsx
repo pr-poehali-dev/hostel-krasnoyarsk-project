@@ -107,7 +107,7 @@ const Booklet = () => {
               {[
                 { img: 'https://cdn.poehali.dev/files/7d655c9d-d41d-497f-9f54-306ac0b10cb9.jpg', title: '4-местный' },
                 { img: 'https://cdn.poehali.dev/files/282cb7d1-99f4-4580-af2c-6b1d10169356.jpg', title: '8-местный' },
-                { img: 'https://cdn.poehali.dev/files/07638c2d-3ec1-4753-9d1c-10ab0efcaffd.jpg', title: '14-местный' },
+                { img: 'https://cdn.poehali.dev/files/07638c2d-3ec1-4753-9d1c-10ab0efcaffd.jpg', title: '12-местный' },
               ].map(room => (
                 <div key={room.title} style={{ border: '1px solid #e2d9ce', borderRadius: 6, overflow: 'hidden', background: '#faf8f5' }}>
                   <img src={room.img} alt={room.title} style={{ width: '100%', height: '36mm', objectFit: 'cover', display: 'block' }} />

@@ -23,8 +23,8 @@ const RoomsSection = ({ scrollToSection }: RoomsSectionProps) => {
       image: 'https://cdn.poehali.dev/files/282cb7d1-99f4-4580-af2c-6b1d10169356.jpg'
     },
     {
-      title: '14-местный номер',
-      capacity: '14 человек',
+      title: '12-местный номер',
+      capacity: '12 человек',
       description: 'Большой номер для группы с собственным санузлом и душем',
       price: '900 ₽',
       image: 'https://cdn.poehali.dev/files/07638c2d-3ec1-4753-9d1c-10ab0efcaffd.jpg'
@@ -38,7 +38,7 @@ const RoomsSection = ({ scrollToSection }: RoomsSectionProps) => {
           <div className="max-w-4xl mx-auto text-center space-y-4 sm:space-y-6">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground">О хостеле</h2>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-              Наш хостел предлагает комфортное размещение от 4 до 14 человек в номере. 
+              Наш хостел предлагает комфортное размещение от 4 до 12 человек в номере. 
               Каждый номер оснащен собственным туалетом и душем для вашего удобства.
               Работаем с компаниями по проживанию и питанию Ваших работников.
             </p>
