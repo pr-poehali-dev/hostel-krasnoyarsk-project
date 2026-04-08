@@ -12,21 +12,21 @@ const RoomsSection = ({ scrollToSection }: RoomsSectionProps) => {
       title: '4-местный номер',
       capacity: '4 человека',
       description: 'Уютный номер с четырьмя спальными местами, собственным санузлом и душем',
-      price: '900 ₽',
+      price: '850 ₽',
       image: 'https://cdn.poehali.dev/files/a2fe496b-1941-4729-966b-81ce98db8c57.jpg'
     },
     {
       title: '8-местный номер',
       capacity: '8 человек',
       description: 'Просторный номер с восемью спальными местами, собственным санузлом и душем',
-      price: '900 ₽',
+      price: '850 ₽',
       image: 'https://cdn.poehali.dev/files/282cb7d1-99f4-4580-af2c-6b1d10169356.jpg'
     },
     {
       title: '12-местный номер',
       capacity: '12 человек',
       description: 'Большой номер для группы с собственным санузлом и душем',
-      price: '900 ₽',
+      price: '850 ₽',
       image: 'https://cdn.poehali.dev/files/07638c2d-3ec1-4753-9d1c-10ab0efcaffd.jpg'
     }
   ];

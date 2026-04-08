@@ -39,12 +39,12 @@ const PricesSection = () => {
               </CardHeader>
               <CardContent className="pt-6 sm:pt-8 space-y-4 sm:space-y-6">
                 <div className="text-center">
-                  <div className="text-4xl sm:text-5xl font-bold text-primary mb-2">900 ₽</div>
+                  <div className="text-4xl sm:text-5xl font-bold text-primary mb-2">850 ₽</div>
                   <p className="text-sm sm:text-base text-muted-foreground">койко-место / сутки</p>
                 </div>
                 <div className="border-t pt-4 sm:pt-6">
                   <div className="text-center">
-                    <div className="text-3xl sm:text-4xl font-bold text-accent mb-2">850 ₽</div>
+                    <div className="text-3xl sm:text-4xl font-bold text-accent mb-2">800 ₽</div>
                     <p className="text-sm sm:text-base text-muted-foreground">при проживании более 7 дней</p>
                   </div>
                 </div>
